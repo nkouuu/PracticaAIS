@@ -7,18 +7,19 @@ package buscaminasgit;
 
 import java.awt.*;
 import java.awt.event.*;
+import static java.lang.Thread.sleep;
  
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class BuscaminasGit extends JFrame implements ActionListener, MouseListener{
-    
+    Thread hilo;
     JMenuBar barraMenu;
     JMenu menu;
     JMenuItem mi1;
     JTextField minasRestantes;
     
-    JLabel tiempo = new JLabel();
-    
+    JLabel tiempo = new JLabel("00:00:000");
+    Cronometro cronometro;
     
     int nomines = 80; //number of mines
     int perm[][];
@@ -39,7 +40,11 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     double actualtime = System.nanoTime();
     public BuscaminasGit(){
         //new BuscaminasGit();
+<<<<<<< HEAD
         minasRestantes = new JTextField(nomines);
+=======
+        cronometro=new Cronometro();
+>>>>>>> 7e00a0402d4f8f8e5e3cb661e90a01417d3e021f
         barraMenu = new JMenuBar();
         setJMenuBar(barraMenu);
         
@@ -49,7 +54,12 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         mi1.addActionListener(this);
         menu.add(mi1);
         barraMenu.add(menu);
+        cronometro.iniciarCronometro();
+        hilo=new Thread(cronometro);
+        hilo.start();
+        barraMenu.add(cronometro.getTiempo());
         
+<<<<<<< HEAD
         tiempo.setText("Tiempo: " + (int)((actualtime-starttime)/1000000000));
         barraMenu.add(Box.createHorizontalGlue());
         tiempo.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
@@ -57,6 +67,10 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
 
         barraMenu.add(tiempo);
         barraMenu.add(minasRestantes);
+=======
+        
+        
+>>>>>>> 7e00a0402d4f8f8e5e3cb661e90a01417d3e021f
         
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -182,6 +196,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             JOptionPane.showMessageDialog(temporaryLostComponent, "Congratulations you won!!! It took you "+(int)((endtime-starttime)/1000000000)+" seconds!");
         }
     }
+    
  
     public void scan(int x, int y){
         for (int a = 0;a<8;a++){
