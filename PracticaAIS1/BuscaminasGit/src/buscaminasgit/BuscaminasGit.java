@@ -124,6 +124,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
                 b[x][y].addMouseListener(this);
                 add(b[x][y]);
                 b[x][y].setEnabled(true);
+                minasRestantes.setText(String.valueOf(nomines));
             }//end inner for
         }//end for
         pack();
@@ -160,7 +161,10 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         }
         Component temporaryLostComponent = null;
         if (b[row][column].getBackground() == Color.orange){
-            minasRestantes.setText(String.valueOf(nomines--));
+            if((mines[row+1][column+1] == 1)){
+                nomines--;
+                minasRestantes.setText(String.valueOf(nomines));
+            }
             return;
         }else if (mines[row+1][column+1] == 1){
                 
