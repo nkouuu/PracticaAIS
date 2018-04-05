@@ -61,7 +61,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         barraMenu.add(cronometro.getTiempo());
         barraMenu.add(Box.createHorizontalGlue());
         cronometro.tiempo.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        //barraMenu.add(minasRestantes);
+        barraMenu.add(minasRestantes);
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         perm = new int[n][m];
@@ -151,10 +151,11 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         }
         Component temporaryLostComponent = null;
         if (b[row][column].getBackground() == Color.orange){
-            if((mines[row+1][column+1] == 1)){
-                nomines--;
+            /*if((mines[row+1][column+1] == 1)){
+                nomines = nomines -1 ;
+                mines[row+1][column+1] = 0;
                 minasRestantes.setText(String.valueOf(nomines));
-            }
+            }*/
             return;
         }else if (mines[row+1][column+1] == 1){
                 cronometro.pararCronometro();
