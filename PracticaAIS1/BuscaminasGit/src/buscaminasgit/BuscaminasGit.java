@@ -40,11 +40,11 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     double actualtime = System.nanoTime();
     public BuscaminasGit(){
         //new BuscaminasGit();
-<<<<<<< HEAD
+
         minasRestantes = new JTextField(nomines);
-=======
+
         cronometro=new Cronometro();
->>>>>>> 7e00a0402d4f8f8e5e3cb661e90a01417d3e021f
+
         barraMenu = new JMenuBar();
         setJMenuBar(barraMenu);
         
@@ -59,7 +59,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         hilo.start();
         barraMenu.add(cronometro.getTiempo());
         
-<<<<<<< HEAD
+
         tiempo.setText("Tiempo: " + (int)((actualtime-starttime)/1000000000));
         barraMenu.add(Box.createHorizontalGlue());
         tiempo.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
@@ -67,10 +67,10 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
 
         barraMenu.add(tiempo);
         barraMenu.add(minasRestantes);
-=======
+
         
         
->>>>>>> 7e00a0402d4f8f8e5e3cb661e90a01417d3e021f
+
         
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -163,6 +163,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             minasRestantes.setText(String.valueOf(nomines--));
             return;
         }else if (mines[row+1][column+1] == 1){
+                
                 JOptionPane.showMessageDialog(temporaryLostComponent, "You set off a Mine!!!!.");
                 //System.exit(0);
                 this.setVisible(false);
