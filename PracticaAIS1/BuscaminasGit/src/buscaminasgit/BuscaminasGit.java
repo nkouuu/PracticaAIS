@@ -11,7 +11,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class BuscaminasGit extends JFrame implements ActionListener, MouseListener{
-    
+    JButton prueba = new JButton();
+    JMenuBar barraMenu;
+    JMenu menu;
+    JMenuItem mi1;
     int nomines = 80; //number of mines
     int perm[][];
     String tmp;
@@ -30,6 +33,21 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     double endtime;
     public BuscaminasGit(){
         //new BuscaminasGit();
+        barraMenu = new JMenuBar();
+        setJMenuBar(barraMenu);
+        
+        menu = new JMenu("Menu");
+        barraMenu.add(menu);
+        
+        mi1 = new JMenuItem("Reiniciar partida");
+        mi1.addActionListener(this);
+        menu.add(mi1);
+        barraMenu.add(menu);
+        
+       
+        
+        
+        
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setSize(3000, 1500);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -86,16 +104,24 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             }//end inner for
         }//end for
         pack();
-        //setVisible(true);
+        setVisible(true);
         for (int y = 0;y<m+2;y++){
             for (int x = 0;x<n+2;x++){
                 System.out.print(mines[x][y]);
             }
         System.out.println("");}
         starttime = System.nanoTime();
+        
+        /*add(prueba);
+        prueba.addActionListener(this);*/
     }//end constructor Mine()
  
     public void actionPerformed(ActionEvent e){
+         mi1.addActionListener((ActionEvent evento) -> {
+            this.setVisible(false);
+            new BuscaminasGit();
+            
+        });
         found =  false;
         JButton current = (JButton)e.getSource();
         for (int y = 0;y<m;y++){
@@ -128,6 +154,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
                 checkifend();
             }
         }
+        prueba.setText("REINICIAR");
     }
  
     public void checkifend(){
