@@ -63,7 +63,7 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
           buscaminas = new BuscaminasGit();
          
           //buscaminas.setVisible(true);
-          this.setVisible(false);
+          //this.setVisible(false);
     }//GEN-LAST:event_nuevaPartidaButtonActionPerformed
 /**/
     /**

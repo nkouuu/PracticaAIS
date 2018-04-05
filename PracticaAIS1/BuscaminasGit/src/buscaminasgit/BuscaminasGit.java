@@ -15,6 +15,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     JMenuBar barraMenu;
     JMenu menu;
     JMenuItem mi1;
+    JTextField minasRestantes;
     
     JLabel tiempo = new JLabel();
     
@@ -38,6 +39,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     double actualtime = System.nanoTime();
     public BuscaminasGit(){
         //new BuscaminasGit();
+        minasRestantes = new JTextField(nomines);
         barraMenu = new JMenuBar();
         setJMenuBar(barraMenu);
         
@@ -49,11 +51,12 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         barraMenu.add(menu);
         
         tiempo.setText("Tiempo: " + (int)((actualtime-starttime)/1000000000));
-        
+        barraMenu.add(Box.createHorizontalGlue());
+        tiempo.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         
 
-        barraMenu.add(tiempo, BorderLayout.CENTER);
-        
+        barraMenu.add(tiempo);
+        barraMenu.add(minasRestantes);
         
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -143,10 +146,12 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         }
         Component temporaryLostComponent = null;
         if (b[row][column].getBackground() == Color.orange){
+            minasRestantes.setText(String.valueOf(nomines--));
             return;
         }else if (mines[row+1][column+1] == 1){
                 JOptionPane.showMessageDialog(temporaryLostComponent, "You set off a Mine!!!!.");
-                System.exit(0);
+                //System.exit(0);
+                this.setVisible(false);
         } else {
             tmp = Integer.toString(perm[row][column]);
             if (perm[row][column] == 0){
