@@ -11,6 +11,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class BuscaminasGit extends JFrame implements ActionListener, MouseListener{
+    
     int nomines = 80; //number of mines
     int perm[][];
     String tmp;
@@ -28,6 +29,9 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     double starttime;
     double endtime;
     public BuscaminasGit(){
+        //new BuscaminasGit();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setSize(3000, 1500);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         perm = new int[n][m];
         boolean allmines = false;
@@ -82,7 +86,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             }//end inner for
         }//end for
         pack();
-        setVisible(true);
+        //setVisible(true);
         for (int y = 0;y<m+2;y++){
             for (int x = 0;x<n+2;x++){
                 System.out.print(mines[x][y]);
@@ -172,11 +176,11 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     public void windowIconified(WindowEvent e){
  
     }
- 
+    /*
     public static void main(String[] args){
         new BuscaminasGit();
-    }
- 
+    }*/
+    
     public void mouseClicked(MouseEvent e) {
  
     }
