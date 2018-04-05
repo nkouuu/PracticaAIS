@@ -37,7 +37,7 @@ public class Cronometro  implements Runnable
  
         //Etiqueta donde se colocara el tiempo 
         tiempo = new JLabel( "00:00:000" );
-        tiempo.setFont( new Font( Font.SERIF, Font.BOLD, 30 ) );
+        tiempo.setFont( new Font( Font.SERIF, Font.BOLD, 15 ) );
         tiempo.setHorizontalAlignment( JLabel.RIGHT );
         tiempo.setForeground( Color.BLACK );
         //tiempo.setBackground( Color. );

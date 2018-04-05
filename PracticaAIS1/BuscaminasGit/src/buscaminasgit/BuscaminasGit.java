@@ -18,7 +18,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     JMenuItem mi1;
     JTextField minasRestantes;
     
-    JLabel tiempo = new JLabel("00:00:000");
+    
     Cronometro cronometro;
     
     int nomines = 80; //number of mines
@@ -40,7 +40,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     double actualtime = System.nanoTime();
     public BuscaminasGit(){
         //new BuscaminasGit();
-
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         minasRestantes = new JTextField(nomines);
 
         cronometro=new Cronometro();
@@ -57,22 +57,12 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         cronometro.iniciarCronometro();
         hilo=new Thread(cronometro);
         hilo.start();
+        cronometro.getTiempo().setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         barraMenu.add(cronometro.getTiempo());
-        
-
-        tiempo.setText("Tiempo: " + (int)((actualtime-starttime)/1000000000));
         barraMenu.add(Box.createHorizontalGlue());
-        tiempo.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        
-
-        barraMenu.add(tiempo);
-        barraMenu.add(minasRestantes);
-
-        
-        
-
-        
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        cronometro.tiempo.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        //barraMenu.add(minasRestantes);
+        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         perm = new int[n][m];
         boolean allmines = false;
@@ -163,7 +153,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             minasRestantes.setText(String.valueOf(nomines--));
             return;
         }else if (mines[row+1][column+1] == 1){
-                
+                cronometro.pararCronometro();
                 JOptionPane.showMessageDialog(temporaryLostComponent, "You set off a Mine!!!!.");
                 //System.exit(0);
                 this.setVisible(false);
