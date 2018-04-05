@@ -11,10 +11,14 @@ import java.awt.event.*;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class BuscaminasGit extends JFrame implements ActionListener, MouseListener{
-    JButton prueba = new JButton();
+    
     JMenuBar barraMenu;
     JMenu menu;
     JMenuItem mi1;
+    
+    JLabel tiempo = new JLabel();
+    
+    
     int nomines = 80; //number of mines
     int perm[][];
     String tmp;
@@ -31,6 +35,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     int deltay[] = {-1, -1, -1, 0, 0, 1, 1, 1};
     double starttime;
     double endtime;
+    double actualtime = System.nanoTime();
     public BuscaminasGit(){
         //new BuscaminasGit();
         barraMenu = new JMenuBar();
@@ -38,18 +43,19 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         
         menu = new JMenu("Menu");
         barraMenu.add(menu);
-        
         mi1 = new JMenuItem("Reiniciar partida");
         mi1.addActionListener(this);
         menu.add(mi1);
         barraMenu.add(menu);
         
-       
+        tiempo.setText("Tiempo: " + (int)((actualtime-starttime)/1000000000));
         
+        
+
+        barraMenu.add(tiempo, BorderLayout.CENTER);
         
         
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setSize(3000, 1500);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         perm = new int[n][m];
         boolean allmines = false;
@@ -154,7 +160,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
                 checkifend();
             }
         }
-        prueba.setText("REINICIAR");
+        
     }
  
     public void checkifend(){
