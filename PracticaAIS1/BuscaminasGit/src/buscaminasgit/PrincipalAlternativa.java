@@ -45,7 +45,7 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
         nuevaPartidaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Seleccionar Usuario");
+        setTitle("Menú Principal");
         getContentPane().setLayout(new java.awt.GridLayout(2, 2));
 
         nuevaPartidaButton.setText("Nueva partida");

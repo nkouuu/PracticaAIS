@@ -49,7 +49,7 @@ public class VistaNivelPersonalizado extends javax.swing.JDialog {
         numeroMinasSpinner = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Modificar Trabajador");
+        setTitle("Personalizar Partida");
 
         numeroFilasLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         numeroFilasLabel.setText("Número de filas");

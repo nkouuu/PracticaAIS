@@ -48,7 +48,7 @@ public class VistaNiveles extends javax.swing.JFrame {
         nivelPersonalizadoButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Seleccionar Usuario");
+        setTitle("Seleccionar Nivel");
         getContentPane().setLayout(new java.awt.GridLayout(2, 2));
 
         nivelPrincipianteButton.setText("Principiante");
