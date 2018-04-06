@@ -198,6 +198,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             Component temporaryLostComponent = null;
             cronometro.pararCronometro();
             JOptionPane.showMessageDialog(temporaryLostComponent, "Congratulations you won!!! It took you "+(int)((endtime-starttime)/1000000000)+" seconds!");
+            this.setVisible(false);
         }
     }
     
