@@ -17,10 +17,9 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     JMenu menu;
     JMenuItem mi1;
     JTextField minasRestantes;
-    
-    
+    JLabel tiempoTranscurrido ;
+    JLabel numeroMinas;
     Cronometro cronometro;
-    
     int nomines = 80; //number of mines
     int perm[][];
     String tmp;
@@ -40,27 +39,32 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     double actualtime = System.nanoTime();
     public BuscaminasGit(){
         //new BuscaminasGit();
+        numeroMinas= new JLabel("Minas Restantes: ");
+        tiempoTranscurrido =new JLabel("Tiempo de juego: ");
+        menu = new JMenu("Menu");
+        //tiempoTranscurrido.setBackground(OPAQUE);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         minasRestantes = new JTextField(nomines);
-
+        minasRestantes.setEditable(false);
         cronometro=new Cronometro();
-
         barraMenu = new JMenuBar();
         setJMenuBar(barraMenu);
-        
-        menu = new JMenu("Menu");
+        menu.setBackground(Color.black);
         barraMenu.add(menu);
         mi1 = new JMenuItem("Reiniciar partida");
         mi1.addActionListener(this);
         menu.add(mi1);
-        barraMenu.add(menu);
+        menu.setMinimumSize(new Dimension(50,0));
+        barraMenu.setLayout(new BoxLayout(barraMenu, BoxLayout.X_AXIS));
         cronometro.iniciarCronometro();
         hilo=new Thread(cronometro);
         hilo.start();
-        cronometro.getTiempo().setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        barraMenu.add(Box.createRigidArea(new Dimension(400,0)));  
+        barraMenu.add(tiempoTranscurrido);
+        cronometro.getTiempo().setOpaque(false);
         barraMenu.add(cronometro.getTiempo());
-        barraMenu.add(Box.createHorizontalGlue());
-        cronometro.tiempo.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        barraMenu.add(Box.createRigidArea(new Dimension(450,0)));
+        barraMenu.add(numeroMinas);
         barraMenu.add(minasRestantes);
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
