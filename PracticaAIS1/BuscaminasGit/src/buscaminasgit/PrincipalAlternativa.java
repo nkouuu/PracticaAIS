@@ -60,8 +60,9 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevaPartidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaPartidaButtonActionPerformed
-          buscaminas = new BuscaminasGit();
-         
+          //buscaminas = new BuscaminasGit();
+          VistaNiveles vistaNiveles = new VistaNiveles();
+          vistaNiveles.setVisible(true);
           //buscaminas.setVisible(true);
           //this.setVisible(false);
     }//GEN-LAST:event_nuevaPartidaButtonActionPerformed

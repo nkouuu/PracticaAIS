@@ -37,7 +37,10 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     double starttime;
     double endtime;
     double actualtime = System.nanoTime();
-    public BuscaminasGit(){
+    public BuscaminasGit(int n, int m, int nomines){
+        this.n = n;
+        this.m = m;
+        this.nomines = nomines;
         //new BuscaminasGit();
         numeroMinas= new JLabel("Minas Restantes: ");
         tiempoTranscurrido =new JLabel("Tiempo de juego: ");
@@ -137,7 +140,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     public void actionPerformed(ActionEvent e){
          mi1.addActionListener((ActionEvent evento) -> {
             this.setVisible(false);
-            new BuscaminasGit();
+            new BuscaminasGit(n,m,nomines);
             
         });
         found =  false;
@@ -193,6 +196,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         if (check == nomines){
             endtime = System.nanoTime();
             Component temporaryLostComponent = null;
+            cronometro.pararCronometro();
             JOptionPane.showMessageDialog(temporaryLostComponent, "Congratulations you won!!! It took you "+(int)((endtime-starttime)/1000000000)+" seconds!");
         }
     }
