@@ -91,9 +91,9 @@ public class VistaNiveles extends javax.swing.JFrame {
             int m = 10;
             int nomines = 10;
             buscaminas = new BuscaminasGit(n,m,nomines);
-         
+            this.setVisible(false);
           //buscaminas.setVisible(true);
-          //this.setVisible(false);
+            
     }//GEN-LAST:event_nivelPrincipianteButtonActionPerformed
 
     private void nivelntermedioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivelntermedioButtonActionPerformed
@@ -101,6 +101,7 @@ public class VistaNiveles extends javax.swing.JFrame {
             int m = 16;
             int nomines = 40;
             buscaminas = new BuscaminasGit(n,m,nomines);
+            this.setVisible(false);
     }//GEN-LAST:event_nivelntermedioButtonActionPerformed
 
     private void nivelExpertoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivelExpertoButtonActionPerformed
@@ -108,11 +109,14 @@ public class VistaNiveles extends javax.swing.JFrame {
             int m = 16;
             int nomines = 99;
             buscaminas = new BuscaminasGit(n,m,nomines);
+            this.setVisible(false);
     }//GEN-LAST:event_nivelExpertoButtonActionPerformed
 
     private void nivelPersonalizadoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivelPersonalizadoButtonActionPerformed
             VistaNivelPersonalizado vistaNivelPersonalizado = new VistaNivelPersonalizado();
             vistaNivelPersonalizado.setVisible(true);
+            this.setVisible(false);
+            
             
     }//GEN-LAST:event_nivelPersonalizadoButtonActionPerformed
 /**/

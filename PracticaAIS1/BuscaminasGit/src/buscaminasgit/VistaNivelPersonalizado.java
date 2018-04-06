@@ -26,6 +26,8 @@ public class VistaNivelPersonalizado extends javax.swing.JDialog {
         
         initComponents();
        
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -52,7 +54,7 @@ public class VistaNivelPersonalizado extends javax.swing.JDialog {
         numeroFilasLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         numeroFilasLabel.setText("Número de filas");
 
-        numeroFilasSpinner.setModel(new javax.swing.SpinnerNumberModel());
+        numeroFilasSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         aceptarButton.setText("Aceptar");
         aceptarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -68,7 +70,7 @@ public class VistaNivelPersonalizado extends javax.swing.JDialog {
             }
         });
 
-        numeroColumnasSpinner.setModel(new javax.swing.SpinnerNumberModel());
+        numeroColumnasSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         numeroColumnasLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         numeroColumnasLabel.setText("Número de columnas");
@@ -76,7 +78,7 @@ public class VistaNivelPersonalizado extends javax.swing.JDialog {
         numeroMinasLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         numeroMinasLabel.setText("Número de minas");
 
-        numeroMinasSpinner.setModel(new javax.swing.SpinnerNumberModel());
+        numeroMinasSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
