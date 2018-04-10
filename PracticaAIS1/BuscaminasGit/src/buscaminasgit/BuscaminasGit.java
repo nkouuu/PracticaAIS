@@ -45,6 +45,8 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         numeroMinas= new JLabel("Minas Restantes: ");
         tiempoTranscurrido =new JLabel("Tiempo de juego: ");
         menu = new JMenu("Menu");
+        Font font = new Font("Calibri", 3, 15);
+        menu.setFont(font);
         //tiempoTranscurrido.setBackground(OPAQUE);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         minasRestantes = new JTextField(nomines);
