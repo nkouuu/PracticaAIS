@@ -287,6 +287,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         menu.setMinimumSize(new Dimension(50,0));
         barraMenu.setLayout(new BoxLayout(barraMenu, BoxLayout.X_AXIS));
         cronometro.iniciarCronometro();
+        Thread hilo;
         hilo=new Thread(cronometro);
         hilo.start();
         barraMenu.add(Box.createRigidArea(new Dimension(400,0)));  
