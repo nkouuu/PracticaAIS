@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
  
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -373,7 +375,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             ObjectOutputStream oos = new ObjectOutputStream(bos);
             
             // Escritura
-            cronometro.pararCronometro();
+            //cronometro.pararCronometro();
             oos.writeObject(this);
             // Cierre
             oos.flush();
