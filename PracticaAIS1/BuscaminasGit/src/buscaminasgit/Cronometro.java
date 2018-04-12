@@ -94,7 +94,7 @@ public class Cronometro  implements Runnable
             }
         }catch(Exception e){}
         //Cuando se reincie se coloca nuevamente en 00:00:000
-        tiempo.setText( "00:00:000" );
+        //tiempo.setText( "00:00:000" );
     }
   
    

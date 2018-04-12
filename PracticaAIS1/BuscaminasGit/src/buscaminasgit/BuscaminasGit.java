@@ -75,16 +75,29 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             
         });
         menu.add(mi1);
+        mi1.addActionListener((ActionEvent evento) -> {
+            this.setVisible(false);
+            new BuscaminasGit(n,m,nominesAux);
+            
+        });
         mi2 = new JMenuItem("Guardar partida");
+<<<<<<< HEAD
         //mi2.addActionListener(this);
         mi2.addActionListener((ActionEvent evento) -> {
             //hilo.destroy();
+=======
+        mi2.addActionListener(this);
+        mi2.addActionListener((ActionEvent evento) -> {
+            //hilo.destroy();
+            cronometro.pararCronometro();
+>>>>>>> 79cd0d2482fb3781afe73caf1aa99715a4ba5f1d
             JFileChooser selectorFichero = new JFileChooser();
             selectorFichero.setDialogTitle("Selecciona Fichero BackUp");
             selectorFichero.setFileSelectionMode(JFileChooser.FILES_ONLY);
         
             int resultado = selectorFichero.showSaveDialog(this);
             if (resultado == JFileChooser.APPROVE_OPTION) {
+<<<<<<< HEAD
             boolean resultadoOK = this.hacerBackUp(selectorFichero.getSelectedFile().getAbsolutePath());
             if (resultadoOK) {
                 JOptionPane.showMessageDialog(this, "Fichero guardado correctamente", "Guardar Fichero", JOptionPane.INFORMATION_MESSAGE);
@@ -92,6 +105,15 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
                 JOptionPane.showMessageDialog(this, "Fichero NO guardado", "Guardar Fichero", JOptionPane.ERROR_MESSAGE);
             }
         }
+=======
+                boolean resultadoOK = this.hacerBackUp(selectorFichero.getSelectedFile().getAbsolutePath());
+                if (resultadoOK) {
+                    JOptionPane.showMessageDialog(this, "Fichero guardado correctamente", "Guardar Fichero", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Fichero NO guardado", "Guardar Fichero", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+>>>>>>> 79cd0d2482fb3781afe73caf1aa99715a4ba5f1d
             
         });
         menu.add(mi2);
@@ -198,6 +220,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     }//end constructor Mine()
  
     public void actionPerformed(ActionEvent e){
+<<<<<<< HEAD
 
         found =  false;
         JButton current = (JButton)e.getSource();
@@ -206,36 +229,48 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
                 JButton t = b[x][y];
                 if(t == current){
                     row=x;column=y; found =true;
-                }
-            }//end inner for
-        }//end for
-        if(!found) {
-            System.out.println("didn't find the button, there was an error "); System.exit(-1);
-        }
-        Component temporaryLostComponent = null;
-        if (b[row][column].getBackground() == Color.orange){
-            /*if((mines[row+1][column+1] == 1)){
-                nomines = nomines -1 ;
-                mines[row+1][column+1] = 0;
-                minasRestantes.setText(String.valueOf(nomines));
-            }*/
-            return;
-        }else if (mines[row+1][column+1] == 1){
-                cronometro.pararCronometro();
-                JOptionPane.showMessageDialog(temporaryLostComponent, "You set off a Mine!!!!.");
-                //System.exit(0);
-                this.setVisible(false);
-        } else {
-            tmp = Integer.toString(perm[row][column]);
-            if (perm[row][column] == 0){
-                    tmp = " ";
+=======
+         
+        if(e.getClass().equals(JButton.class)){
+            found =  false;
+            JButton current = (JButton)e.getSource();
+            for (int y = 0;y<m;y++){
+                for (int x = 0;x<n;x++){
+                    JButton t = b[x][y];
+                    if(t == current){
+                        row=x;column=y; found =true;
+                    }
+                }//end inner for
+            }//end for
+            if(!found) {
+                System.out.println("didn't find the button, there was an error "); System.exit(-1);
             }
-            b[row][column].setText(tmp);
-            b[row][column].setEnabled(false);
-            checkifend();
-            if (perm[row][column] == 0){
-                scan(row, column);
+            Component temporaryLostComponent = null;
+            if (b[row][column].getBackground() == Color.orange){
+                /*if((mines[row+1][column+1] == 1)){
+                    nomines = nomines -1 ;
+                    mines[row+1][column+1] = 0;
+                    minasRestantes.setText(String.valueOf(nomines));
+                }*/
+                return;
+            }else if (mines[row+1][column+1] == 1){
+                    cronometro.pararCronometro();
+                    JOptionPane.showMessageDialog(temporaryLostComponent, "You set off a Mine!!!!.");
+                    //System.exit(0);
+                    this.setVisible(false);
+            } else {
+                tmp = Integer.toString(perm[row][column]);
+                if (perm[row][column] == 0){
+                        tmp = " ";
+>>>>>>> 79cd0d2482fb3781afe73caf1aa99715a4ba5f1d
+                }
+                b[row][column].setText(tmp);
+                b[row][column].setEnabled(false);
                 checkifend();
+                if (perm[row][column] == 0){
+                    scan(row, column);
+                    checkifend();
+                }
             }
         }
         
