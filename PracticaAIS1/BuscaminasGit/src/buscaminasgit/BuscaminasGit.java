@@ -65,8 +65,31 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         mi1 = new JMenuItem("Reiniciar partida");
         mi1.addActionListener(this);
         menu.add(mi1);
+        mi1.addActionListener((ActionEvent evento) -> {
+            this.setVisible(false);
+            new BuscaminasGit(n,m,nominesAux);
+            
+        });
         mi2 = new JMenuItem("Guardar partida");
         mi2.addActionListener(this);
+        mi2.addActionListener((ActionEvent evento) -> {
+            //hilo.destroy();
+            cronometro.pararCronometro();
+            JFileChooser selectorFichero = new JFileChooser();
+            selectorFichero.setDialogTitle("Selecciona Fichero BackUp");
+            selectorFichero.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+            int resultado = selectorFichero.showSaveDialog(this);
+            if (resultado == JFileChooser.APPROVE_OPTION) {
+                boolean resultadoOK = this.hacerBackUp(selectorFichero.getSelectedFile().getAbsolutePath());
+                if (resultadoOK) {
+                    JOptionPane.showMessageDialog(this, "Fichero guardado correctamente", "Guardar Fichero", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Fichero NO guardado", "Guardar Fichero", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            
+        });
         menu.add(mi2);
         menu.setMinimumSize(new Dimension(50,0));
         barraMenu.setLayout(new BoxLayout(barraMenu, BoxLayout.X_AXIS));
@@ -149,65 +172,46 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     }//end constructor Mine()
  
     public void actionPerformed(ActionEvent e){
-         mi1.addActionListener((ActionEvent evento) -> {
-            this.setVisible(false);
-            new BuscaminasGit(n,m,nominesAux);
-            
-        });
-        mi2.addActionListener((ActionEvent evento) -> {
-            //hilo.destroy();
-            JFileChooser selectorFichero = new JFileChooser();
-            selectorFichero.setDialogTitle("Selecciona Fichero BackUp");
-            selectorFichero.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        
-            int resultado = selectorFichero.showSaveDialog(this);
-            if (resultado == JFileChooser.APPROVE_OPTION) {
-            boolean resultadoOK = this.hacerBackUp(selectorFichero.getSelectedFile().getAbsolutePath());
-            if (resultadoOK) {
-                JOptionPane.showMessageDialog(this, "Fichero guardado correctamente", "Guardar Fichero", JOptionPane.INFORMATION_MESSAGE);
+         
+        if(e.getClass().equals(JButton.class)){
+            found =  false;
+            JButton current = (JButton)e.getSource();
+            for (int y = 0;y<m;y++){
+                for (int x = 0;x<n;x++){
+                    JButton t = b[x][y];
+                    if(t == current){
+                        row=x;column=y; found =true;
+                    }
+                }//end inner for
+            }//end for
+            if(!found) {
+                System.out.println("didn't find the button, there was an error "); System.exit(-1);
+            }
+            Component temporaryLostComponent = null;
+            if (b[row][column].getBackground() == Color.orange){
+                /*if((mines[row+1][column+1] == 1)){
+                    nomines = nomines -1 ;
+                    mines[row+1][column+1] = 0;
+                    minasRestantes.setText(String.valueOf(nomines));
+                }*/
+                return;
+            }else if (mines[row+1][column+1] == 1){
+                    cronometro.pararCronometro();
+                    JOptionPane.showMessageDialog(temporaryLostComponent, "You set off a Mine!!!!.");
+                    //System.exit(0);
+                    this.setVisible(false);
             } else {
-                JOptionPane.showMessageDialog(this, "Fichero NO guardado", "Guardar Fichero", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-            
-        });
-        found =  false;
-        JButton current = (JButton)e.getSource();
-        for (int y = 0;y<m;y++){
-            for (int x = 0;x<n;x++){
-                JButton t = b[x][y];
-                if(t == current){
-                    row=x;column=y; found =true;
+                tmp = Integer.toString(perm[row][column]);
+                if (perm[row][column] == 0){
+                        tmp = " ";
                 }
-            }//end inner for
-        }//end for
-        if(!found) {
-            System.out.println("didn't find the button, there was an error "); System.exit(-1);
-        }
-        Component temporaryLostComponent = null;
-        if (b[row][column].getBackground() == Color.orange){
-            /*if((mines[row+1][column+1] == 1)){
-                nomines = nomines -1 ;
-                mines[row+1][column+1] = 0;
-                minasRestantes.setText(String.valueOf(nomines));
-            }*/
-            return;
-        }else if (mines[row+1][column+1] == 1){
-                cronometro.pararCronometro();
-                JOptionPane.showMessageDialog(temporaryLostComponent, "You set off a Mine!!!!.");
-                //System.exit(0);
-                this.setVisible(false);
-        } else {
-            tmp = Integer.toString(perm[row][column]);
-            if (perm[row][column] == 0){
-                    tmp = " ";
-            }
-            b[row][column].setText(tmp);
-            b[row][column].setEnabled(false);
-            checkifend();
-            if (perm[row][column] == 0){
-                scan(row, column);
+                b[row][column].setText(tmp);
+                b[row][column].setEnabled(false);
                 checkifend();
+                if (perm[row][column] == 0){
+                    scan(row, column);
+                    checkifend();
+                }
             }
         }
         
