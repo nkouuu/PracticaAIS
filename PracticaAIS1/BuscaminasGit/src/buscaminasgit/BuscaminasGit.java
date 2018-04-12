@@ -81,23 +81,19 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             
         });
         mi2 = new JMenuItem("Guardar partida");
-<<<<<<< HEAD
-        //mi2.addActionListener(this);
-        mi2.addActionListener((ActionEvent evento) -> {
-            //hilo.destroy();
-=======
-        mi2.addActionListener(this);
+
+        
         mi2.addActionListener((ActionEvent evento) -> {
             //hilo.destroy();
             cronometro.pararCronometro();
->>>>>>> 79cd0d2482fb3781afe73caf1aa99715a4ba5f1d
+
             JFileChooser selectorFichero = new JFileChooser();
             selectorFichero.setDialogTitle("Selecciona Fichero BackUp");
             selectorFichero.setFileSelectionMode(JFileChooser.FILES_ONLY);
         
             int resultado = selectorFichero.showSaveDialog(this);
             if (resultado == JFileChooser.APPROVE_OPTION) {
-<<<<<<< HEAD
+
             boolean resultadoOK = this.hacerBackUp(selectorFichero.getSelectedFile().getAbsolutePath());
             if (resultadoOK) {
                 JOptionPane.showMessageDialog(this, "Fichero guardado correctamente", "Guardar Fichero", JOptionPane.INFORMATION_MESSAGE);
@@ -105,15 +101,15 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
                 JOptionPane.showMessageDialog(this, "Fichero NO guardado", "Guardar Fichero", JOptionPane.ERROR_MESSAGE);
             }
         }
-=======
+
                 boolean resultadoOK = this.hacerBackUp(selectorFichero.getSelectedFile().getAbsolutePath());
                 if (resultadoOK) {
                     JOptionPane.showMessageDialog(this, "Fichero guardado correctamente", "Guardar Fichero", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, "Fichero NO guardado", "Guardar Fichero", JOptionPane.ERROR_MESSAGE);
                 }
-            }
->>>>>>> 79cd0d2482fb3781afe73caf1aa99715a4ba5f1d
+            
+                
             
         });
         menu.add(mi2);
@@ -220,16 +216,6 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     }//end constructor Mine()
  
     public void actionPerformed(ActionEvent e){
-<<<<<<< HEAD
-
-        found =  false;
-        JButton current = (JButton)e.getSource();
-        for (int y = 0;y<m;y++){
-            for (int x = 0;x<n;x++){
-                JButton t = b[x][y];
-                if(t == current){
-                    row=x;column=y; found =true;
-=======
          
         if(e.getClass().equals(JButton.class)){
             found =  false;
@@ -262,7 +248,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
                 tmp = Integer.toString(perm[row][column]);
                 if (perm[row][column] == 0){
                         tmp = " ";
->>>>>>> 79cd0d2482fb3781afe73caf1aa99715a4ba5f1d
+
                 }
                 b[row][column].setText(tmp);
                 b[row][column].setEnabled(false);
