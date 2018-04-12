@@ -7,15 +7,19 @@ package buscaminasgit;
 
 import java.awt.*;
 import java.awt.event.*;
-import static java.lang.Thread.sleep;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
  
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
-public class BuscaminasGit extends JFrame implements ActionListener, MouseListener{
+public class BuscaminasGit extends JFrame implements ActionListener, MouseListener, Serializable{
     Thread hilo;
     JMenuBar barraMenu;
     JMenu menu;
-    JMenuItem mi1;
+    JMenuItem mi1,mi2;
     JTextField minasRestantes;
     JLabel tiempoTranscurrido ;
     JLabel numeroMinas;
@@ -61,6 +65,9 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         mi1 = new JMenuItem("Reiniciar partida");
         mi1.addActionListener(this);
         menu.add(mi1);
+        mi2 = new JMenuItem("Guardar partida");
+        mi2.addActionListener(this);
+        menu.add(mi2);
         menu.setMinimumSize(new Dimension(50,0));
         barraMenu.setLayout(new BoxLayout(barraMenu, BoxLayout.X_AXIS));
         cronometro.iniciarCronometro();
@@ -145,6 +152,23 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
          mi1.addActionListener((ActionEvent evento) -> {
             this.setVisible(false);
             new BuscaminasGit(n,m,nominesAux);
+            
+        });
+        mi2.addActionListener((ActionEvent evento) -> {
+            //hilo.destroy();
+            JFileChooser selectorFichero = new JFileChooser();
+            selectorFichero.setDialogTitle("Selecciona Fichero BackUp");
+            selectorFichero.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+            int resultado = selectorFichero.showSaveDialog(this);
+            if (resultado == JFileChooser.APPROVE_OPTION) {
+            boolean resultadoOK = this.hacerBackUp(selectorFichero.getSelectedFile().getAbsolutePath());
+            if (resultadoOK) {
+                JOptionPane.showMessageDialog(this, "Fichero guardado correctamente", "Guardar Fichero", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Fichero NO guardado", "Guardar Fichero", JOptionPane.ERROR_MESSAGE);
+            }
+        }
             
         });
         found =  false;
@@ -292,7 +316,28 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             }
         }
     }
- 
+    public boolean hacerBackUp(String nombreFichero) {
+        try {
+            // Apertura
+            FileOutputStream fos = new FileOutputStream(nombreFichero);
+            BufferedOutputStream bos = new BufferedOutputStream(fos);
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            
+            // Escritura
+         
+            
+            
+            oos.writeObject(this);
+            
+            // Cierre
+            oos.flush();
+            oos.close();
+            return true;
+        } catch (IOException ex) {
+            System.err.println("ERROR: No ha sido posible hacer el backup del fichero  '" + nombreFichero + "'");
+        }
+        return false;
+    }
     @Override
     public void mouseReleased(MouseEvent arg0) {
         // TODO Auto-generated method stub
