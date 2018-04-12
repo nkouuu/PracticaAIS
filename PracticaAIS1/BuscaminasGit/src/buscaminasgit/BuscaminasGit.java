@@ -7,9 +7,13 @@ package buscaminasgit;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.EOFException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
  
@@ -19,7 +23,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     Thread hilo;
     JMenuBar barraMenu;
     JMenu menu;
-    JMenuItem mi1,mi2;
+    JMenuItem mi1,mi2,mi3;
     JTextField minasRestantes;
     JLabel tiempoTranscurrido ;
     JLabel numeroMinas;
@@ -28,6 +32,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     int nominesAux;
     int perm[][];
     String tmp;
+    BuscaminasGit buscaminas;
     boolean found = false;
     int row;
     int column;
@@ -63,11 +68,55 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         menu.setBackground(Color.black);
         barraMenu.add(menu);
         mi1 = new JMenuItem("Reiniciar partida");
-        mi1.addActionListener(this);
+        //mi1.addActionListener(this);
+        mi1.addActionListener((ActionEvent evento) -> {
+            this.setVisible(false);
+            new BuscaminasGit(n,m,nominesAux);
+            
+        });
         menu.add(mi1);
         mi2 = new JMenuItem("Guardar partida");
-        mi2.addActionListener(this);
+        //mi2.addActionListener(this);
+        mi2.addActionListener((ActionEvent evento) -> {
+            //hilo.destroy();
+            JFileChooser selectorFichero = new JFileChooser();
+            selectorFichero.setDialogTitle("Selecciona Fichero BackUp");
+            selectorFichero.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+            int resultado = selectorFichero.showSaveDialog(this);
+            if (resultado == JFileChooser.APPROVE_OPTION) {
+            boolean resultadoOK = this.hacerBackUp(selectorFichero.getSelectedFile().getAbsolutePath());
+            if (resultadoOK) {
+                JOptionPane.showMessageDialog(this, "Fichero guardado correctamente", "Guardar Fichero", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Fichero NO guardado", "Guardar Fichero", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+            
+        });
         menu.add(mi2);
+        mi3 = new JMenuItem("Cargar partida");
+        //mi3.addActionListener(this);
+        mi3.addActionListener((ActionEvent evento) -> {
+            JFileChooser selectorFichero = new JFileChooser();
+            selectorFichero.setDialogTitle("Selecciona Fichero BackUp");
+            selectorFichero.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+            int resultado = selectorFichero.showOpenDialog(this);
+            if (resultado == JFileChooser.APPROVE_OPTION) {
+                boolean resultadoOK = this.restaurarBackUp(selectorFichero.getSelectedFile().getAbsolutePath());
+                if (resultadoOK) {
+                    this.setVisible(false);
+                    buscaminas.setVisible(true);
+                    JOptionPane.showMessageDialog(this, "Fichero cargado correctamente", "Cargar Fichero", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Fichero NO cargado", "Cargar Fichero", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        }
+            
+        );
+        menu.add(mi3);
         menu.setMinimumSize(new Dimension(50,0));
         barraMenu.setLayout(new BoxLayout(barraMenu, BoxLayout.X_AXIS));
         cronometro.iniciarCronometro();
@@ -149,28 +198,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     }//end constructor Mine()
  
     public void actionPerformed(ActionEvent e){
-         mi1.addActionListener((ActionEvent evento) -> {
-            this.setVisible(false);
-            new BuscaminasGit(n,m,nominesAux);
-            
-        });
-        mi2.addActionListener((ActionEvent evento) -> {
-            //hilo.destroy();
-            JFileChooser selectorFichero = new JFileChooser();
-            selectorFichero.setDialogTitle("Selecciona Fichero BackUp");
-            selectorFichero.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        
-            int resultado = selectorFichero.showSaveDialog(this);
-            if (resultado == JFileChooser.APPROVE_OPTION) {
-            boolean resultadoOK = this.hacerBackUp(selectorFichero.getSelectedFile().getAbsolutePath());
-            if (resultadoOK) {
-                JOptionPane.showMessageDialog(this, "Fichero guardado correctamente", "Guardar Fichero", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "Fichero NO guardado", "Guardar Fichero", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-            
-        });
+
         found =  false;
         JButton current = (JButton)e.getSource();
         for (int y = 0;y<m;y++){
@@ -324,17 +352,35 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             ObjectOutputStream oos = new ObjectOutputStream(bos);
             
             // Escritura
-         
-            
-            
+            cronometro.pararCronometro();
             oos.writeObject(this);
-            
             // Cierre
             oos.flush();
             oos.close();
             return true;
         } catch (IOException ex) {
             System.err.println("ERROR: No ha sido posible hacer el backup del fichero  '" + nombreFichero + "'");
+        }
+        return false;
+    }
+    
+    public boolean restaurarBackUp(String nombreFichero) {
+        try {
+            // Apertura
+            FileInputStream fis = new FileInputStream(nombreFichero);
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            
+            // Lectura
+       
+            buscaminas = (BuscaminasGit) ois.readObject();
+            // Cierre
+            ois.close();
+            return true;
+        } catch (EOFException ex) {
+            System.err.println("ERROR: No ha sido posible recuperar el backup del fichero '" + nombreFichero + "'. Fin de fichero inesperado");
+        } catch (ClassNotFoundException | IOException ex) {
+            System.err.println("ERROR: No ha sido posible recuperar el backup del fichero '" + nombreFichero + "' " + ex.getMessage());
         }
         return false;
     }
