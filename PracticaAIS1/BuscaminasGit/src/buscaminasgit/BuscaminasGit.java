@@ -20,7 +20,8 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     JLabel tiempoTranscurrido ;
     JLabel numeroMinas;
     Cronometro cronometro;
-    int nomines = 80; //number of mines
+    int nomines = 80;//number of mines
+    int nominesAux;
     int perm[][];
     String tmp;
     boolean found = false;
@@ -41,6 +42,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         this.n = n;
         this.m = m;
         this.nomines = nomines;
+        nominesAux = nomines;
         //new BuscaminasGit();
         numeroMinas= new JLabel("Minas Restantes: ");
         tiempoTranscurrido =new JLabel("Tiempo de juego: ");
@@ -142,7 +144,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     public void actionPerformed(ActionEvent e){
          mi1.addActionListener((ActionEvent evento) -> {
             this.setVisible(false);
-            new BuscaminasGit(n,m,nomines);
+            new BuscaminasGit(n,m,nominesAux);
             
         });
         found =  false;
