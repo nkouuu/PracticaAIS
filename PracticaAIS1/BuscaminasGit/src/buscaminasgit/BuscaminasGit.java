@@ -20,7 +20,7 @@ import java.io.Serializable;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class BuscaminasGit extends JFrame implements ActionListener, MouseListener, Serializable{
-    Thread hilo;
+    
     JMenuBar barraMenu;
     JMenu menu;
     JMenuItem mi1,mi2,mi3;
@@ -138,6 +138,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         menu.setMinimumSize(new Dimension(50,0));
         barraMenu.setLayout(new BoxLayout(barraMenu, BoxLayout.X_AXIS));
         cronometro.iniciarCronometro();
+        Thread hilo;
         hilo=new Thread(cronometro);
         hilo.start();
         barraMenu.add(Box.createRigidArea(new Dimension(400,0)));  
