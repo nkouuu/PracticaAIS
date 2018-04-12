@@ -207,7 +207,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         prueba.addActionListener(this);*/
     }//end constructor Mine()
     
-    public BuscaminasGit(int n, int m, int nomines, int [][] mines, int guesses[][], int perm[][]){
+    public BuscaminasGit(int n, int m, int nomines, int [][] mines, int guesses[][], int perm[][], Botones[][] b1){
         this.n = n;
         this.m = m;
         this.nomines = nomines;
@@ -299,7 +299,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         barraMenu.add(minasRestantes);
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        perm = new int[n][m];
+        this.perm = perm;
         boolean allmines = false;
         this.guesses = guesses;
         this.mines = mines;
@@ -341,14 +341,14 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         }while (allmines == false); */
         for (int y = 0;y<m;y++){
             for (int x = 0;x<n;x++){
-                if ((mines[x+1][y+1] == 0) || (mines[x+1][y+1] == 1)){
-                    perm[x][y] = perimcheck(x,y);
-                }
-                b[x][y] = new JButton("?");
+                
+                b[x][y] = new JButton(b1[x][y].getText());
                 b[x][y].addActionListener(this);
                 b[x][y].addMouseListener(this);
                 add(b[x][y]);
-                b[x][y].setEnabled(true);
+                b[x][y].setEnabled(b1[x][y].isEstado());
+                if(b1[x][y].getColor()!=null)
+                    b[x][y].setBackground(b1[x][y].getColor());
                 minasRestantes.setText(String.valueOf(nomines));
             }//end inner for
         }//end for
@@ -523,19 +523,20 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             
             // Escritura
             //cronometro.pararCronometro();
-            Datos datos = new Datos();
-            datos.setN(n);
-            datos.setM(m);
+            Datos datos = new Datos(n,m);
+            //datos.setN(n);
+            //datos.setM(m);
             datos.setNomines(nomines);
             datos.setMines(mines);
             datos.setGuesses(guesses);
             datos.setPerm(perm);
-            Botones botones[][]=datos.getBotones();
+            Botones botones[][];
+            botones=datos.getBotones();
             for(int i=0;i<n;i++){
                 for(int j=0;j<m;j++){
-                    //datos.getBotones()[n][m].setColor(b[n][m].getBackground());
-                    botones[n][m].setText(b[n][m].getText());
-                    botones[n][m].setEstado(b[n][m].isEnabled());
+                    botones[i][j].setColor(b[i][j].getBackground());
+                    botones[i][j].setText(b[i][j].getText());
+                    botones[i][j].setEstado(b[i][j].isEnabled());
                 }
             }
             datos.setBotones(botones);
@@ -560,8 +561,8 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             
             // Lectura
             Datos datos = (Datos) ois.readObject();
-            BuscaminasGit buscaminas = new BuscaminasGit(datos.getN(), datos.getM(), datos.getNomines(), datos.getMines(), datos.getGuesses(),datos.getPerm());
-            
+            BuscaminasGit buscaminas = new BuscaminasGit(datos.getN(), datos.getM(), datos.getNomines(), datos.getMines(), datos.getGuesses(),datos.getPerm(),datos.getBotones());
+            this.setVisible(false);
             // Cierre
             ois.close();
             return true;

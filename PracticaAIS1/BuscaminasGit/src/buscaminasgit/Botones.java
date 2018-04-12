@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class Botones implements Serializable{
     String text;
     boolean estado;
-    //Color color;
+    Color color;
 
     public String getText() {
         return text;
@@ -33,13 +33,13 @@ public class Botones implements Serializable{
         this.estado = estado;
     }
 
-    /*public Color getColor() {
+    public Color getColor() {
         return color;
     }
 
     public void setColor(Color color) {
         this.color = color;
-    }*/
+    }
     
     
 }

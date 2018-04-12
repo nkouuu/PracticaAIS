@@ -20,8 +20,19 @@ public class Datos implements Serializable{
     int perm[][];
     Botones botones [][];
     
-    public Datos(){
-        
+    public Datos(int n,int m){
+        this.n=n;
+        this.m=m;
+        mines=new int[n+2][m+2];
+        guesses=new int[n+2][m+2];
+        perm=new int[n][m];
+        botones=new Botones[n][m];
+        for(int i=0;i<n;i++){
+                for(int j=0;j<m;j++){
+                    //datos.getBotones()[n][m].setColor(b[n][m].getBackground());
+                    botones[i][j]=new Botones();
+                }
+            }
     }
 
     public int getN() {
