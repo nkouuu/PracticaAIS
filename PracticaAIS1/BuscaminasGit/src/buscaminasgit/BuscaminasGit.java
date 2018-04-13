@@ -49,6 +49,10 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     double starttime;
     double endtime;
     double actualtime = System.nanoTime();
+    
+    public BuscaminasGit(){
+        
+    }
     public BuscaminasGit(int n, int m, int nomines){
         this.n = n;
         this.m = m;

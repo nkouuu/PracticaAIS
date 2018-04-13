@@ -35,5 +35,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevaPartidaButtonActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JButton" name="cargarPartidaButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cargar partida"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cargarPartidaButtonActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

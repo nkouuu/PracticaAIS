@@ -8,7 +8,9 @@ package buscaminasgit;
 //import Modelo.Empresa;
 
 import java.awt.Frame;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -19,7 +21,7 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     private static final int ANCHO = 350;
     private static final int ALTO = 350;
     
-    private static BuscaminasGit buscaminas;
+    static BuscaminasGit buscaminas = new BuscaminasGit();
     
     /**
      * Creates new form PrincipalAlternativa
@@ -43,6 +45,7 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     private void initComponents() {
 
         nuevaPartidaButton = new javax.swing.JButton();
+        cargarPartidaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
@@ -56,6 +59,14 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
         });
         getContentPane().add(nuevaPartidaButton);
 
+        cargarPartidaButton.setText("Cargar partida");
+        cargarPartidaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarPartidaButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cargarPartidaButton);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -66,6 +77,23 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
           //buscaminas.setVisible(true);
           //this.setVisible(false);
     }//GEN-LAST:event_nuevaPartidaButtonActionPerformed
+
+    private void cargarPartidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarPartidaButtonActionPerformed
+            JFileChooser selectorFichero = new JFileChooser();
+            selectorFichero.setDialogTitle("Selecciona Fichero BackUp");
+            selectorFichero.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+            int resultado = selectorFichero.showOpenDialog(this);
+            if (resultado == JFileChooser.APPROVE_OPTION) {
+                boolean resultadoOK = buscaminas.restaurarBackUp(selectorFichero.getSelectedFile().getAbsolutePath());
+                if (resultadoOK) {
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(this, "Fichero cargado correctamente", "Cargar Fichero", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Fichero NO cargado", "Cargar Fichero", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+    }//GEN-LAST:event_cargarPartidaButtonActionPerformed
 /**/
     /**
      * @param args the command line arguments
@@ -106,6 +134,7 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cargarPartidaButton;
     private javax.swing.JButton nuevaPartidaButton;
     // End of variables declaration//GEN-END:variables
 }
