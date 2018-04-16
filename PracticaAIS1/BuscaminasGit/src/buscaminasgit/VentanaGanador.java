@@ -42,7 +42,7 @@ public class VentanaGanador extends javax.swing.JFrame {
     public boolean hacerBackUpMejoresTiempos() {
         try{
             if ((this.n == 10) && (this.m == 10)){
-                nombreFichero = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposPrincipiante";
+                nombreFichero = "./mejoresTiemposPrincipiante";
             } else if((this.n == 16) && (this.m == 16)){
                 nombreFichero = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposIntermedio";
             } else if((this.n == 32) && (this.m == 16)){
@@ -66,14 +66,17 @@ public class VentanaGanador extends javax.swing.JFrame {
     public boolean restaurarBackUpMejoresTiempos() {
         try {
             // Apertura
+            
+            //String rutaGlobal = System.getProperty("file.separator");
+            
             if ((this.n == 10) && (this.m == 10)){
-                nombreFichero = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposPrincipiante";
+                nombreFichero = "./mejoresTiemposPrincipiante";
                 
                 
             } else if((this.n == 16) && (this.m == 16)){
-                nombreFichero = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposIntermedio";
+                nombreFichero = "./mejoresTiemposIntermedio";
             } else if((this.n == 32) && (this.m == 16)){
-               nombreFichero = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposExperto";
+               nombreFichero = "./mejoresTiemposExperto";
             }
             
             FileInputStream fis = new FileInputStream(nombreFichero);

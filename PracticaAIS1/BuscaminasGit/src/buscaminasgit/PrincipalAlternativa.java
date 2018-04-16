@@ -32,9 +32,9 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     static ArrayList<Usuario> partidasPrincipiante = new ArrayList<Usuario>();
     static ArrayList<Usuario> partidasIntermedio = new ArrayList<Usuario>();
     static ArrayList<Usuario> partidasExperto = new ArrayList<Usuario>();
-    static String nombreFichero = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposPrincipiante";
-    static String nombreFichero2 = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposIntermedio";
-    static String nombreFichero3 = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposExperto";
+    static String nombreFichero = "./mejoresTiemposPrincipiante";
+    static String nombreFichero2 = "./mejoresTiemposIntermedio";
+    static String nombreFichero3 = "./mejoresTiemposExperto";
     /**
      * Creates new form PrincipalAlternativa
      */
