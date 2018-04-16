@@ -8,6 +8,13 @@ package buscaminasgit;
 //import Modelo.Empresa;
 
 import java.awt.Frame;
+import java.io.BufferedInputStream;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,7 +29,12 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     private static final int ALTO = 350;
     
     static BuscaminasGit buscaminas = new BuscaminasGit();
-    
+    static ArrayList<Usuario> partidasPrincipiante = new ArrayList<Usuario>();
+    static ArrayList<Usuario> partidasIntermedio = new ArrayList<Usuario>();
+    static ArrayList<Usuario> partidasExperto = new ArrayList<Usuario>();
+    static String nombreFichero = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposPrincipiante";
+    static String nombreFichero2 = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposIntermedio";
+    static String nombreFichero3 = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposExperto";
     /**
      * Creates new form PrincipalAlternativa
      */
@@ -34,7 +46,105 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
         this.setSize(ANCHO, ALTO);
         this.setLocationRelativeTo(null);
     }
-
+    public boolean restaurarBackUpMejoresTiemposPrincipiante() {
+        try {
+            // Apertura
+            
+                
+    
+            FileInputStream fis = new FileInputStream(nombreFichero);
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            
+            // Lectura
+            partidasPrincipiante.clear();
+            for(int i = 0; i<10; i++){
+                Usuario usuario = (Usuario) ois.readObject();
+                if(usuario == null){
+                    i = 10;
+                } else {
+                    partidasPrincipiante.add(usuario);
+                }
+            }
+            
+            //this.setVisible(false);
+            // Cierre
+            ois.close();
+            return true;
+        } catch (EOFException ex) {
+            //System.err.println("ERROR: No ha sido posible recuperar el backup del fichero '" + nombreFichero + "'. Fin de fichero inesperado");
+            
+        } catch (ClassNotFoundException | IOException ex) {
+            System.err.println("ERROR: No ha sido posible recuperar el backup del fichero '" + nombreFichero + "' " + ex.getMessage());
+        }
+        return false;
+    }
+    public boolean restaurarBackUpMejoresTiemposIntermedio() {
+        try {
+            // Apertura
+            
+                
+    
+            FileInputStream fis = new FileInputStream(nombreFichero2);
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            
+            // Lectura
+            partidasIntermedio.clear();
+            for(int i = 0; i<10; i++){
+                Usuario usuario = (Usuario) ois.readObject();
+                if(usuario == null){
+                    i = 10;
+                } else {
+                    partidasIntermedio.add(usuario);
+                }
+            }
+            
+            //this.setVisible(false);
+            // Cierre
+            ois.close();
+            return true;
+        } catch (EOFException ex) {
+            //System.err.println("ERROR: No ha sido posible recuperar el backup del fichero '" + nombreFichero + "'. Fin de fichero inesperado");
+            
+        } catch (ClassNotFoundException | IOException ex) {
+            System.err.println("ERROR: No ha sido posible recuperar el backup del fichero '" + nombreFichero + "' " + ex.getMessage());
+        }
+        return false;
+    }
+    public boolean restaurarBackUpMejoresTiemposExperto() {
+        try {
+            // Apertura
+            
+                
+    
+            FileInputStream fis = new FileInputStream(nombreFichero3);
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            
+            // Lectura
+            partidasExperto.clear();
+            for(int i = 0; i<10; i++){
+                Usuario usuario = (Usuario) ois.readObject();
+                if(usuario == null){
+                    i = 10;
+                } else {
+                    partidasExperto.add(usuario);
+                }
+            }
+            
+            //this.setVisible(false);
+            // Cierre
+            ois.close();
+            return true;
+        } catch (EOFException ex) {
+            //System.err.println("ERROR: No ha sido posible recuperar el backup del fichero '" + nombreFichero + "'. Fin de fichero inesperado");
+            
+        } catch (ClassNotFoundException | IOException ex) {
+            System.err.println("ERROR: No ha sido posible recuperar el backup del fichero '" + nombreFichero + "' " + ex.getMessage());
+        }
+        return false;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +156,7 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
 
         nuevaPartidaButton = new javax.swing.JButton();
         cargarPartidaButton = new javax.swing.JButton();
+        verMejoresTiemposButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
@@ -67,6 +178,14 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
         });
         getContentPane().add(cargarPartidaButton);
 
+        verMejoresTiemposButton.setText("Ver mejores tiempos");
+        verMejoresTiemposButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verMejoresTiemposButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(verMejoresTiemposButton);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -87,13 +206,56 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
             if (resultado == JFileChooser.APPROVE_OPTION) {
                 boolean resultadoOK = buscaminas.restaurarBackUp(selectorFichero.getSelectedFile().getAbsolutePath());
                 if (resultadoOK) {
+                    
                     this.setVisible(false);
                     JOptionPane.showMessageDialog(this, "Fichero cargado correctamente", "Cargar Fichero", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, "Fichero NO cargado", "Cargar Fichero", JOptionPane.ERROR_MESSAGE);
                 }
             }
+            
+            this.setVisible(true);
+            this.toBack();
     }//GEN-LAST:event_cargarPartidaButtonActionPerformed
+
+    private void verMejoresTiemposButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verMejoresTiemposButtonActionPerformed
+        
+            
+            // Apertura
+            this.restaurarBackUpMejoresTiemposPrincipiante();
+            this.restaurarBackUpMejoresTiemposIntermedio();
+            this.restaurarBackUpMejoresTiemposExperto();
+            /*FileInputStream fis2 = new FileInputStream(nombreFichero2);
+            BufferedInputStream bis2 = new BufferedInputStream(fis2);
+            ObjectInputStream ois2 = new ObjectInputStream(bis2);*/
+            
+            // Lectura
+            
+            /*for(int i = 0; i<10; i++){
+                Usuario usuario = (Usuario) ois2.readObject();
+                if(usuario == null){
+                    i = 10;
+                } else {
+                    partidasIntermedio.add(usuario);
+                }
+            }*/
+            
+            
+            // Cierre
+            
+            //ois2.close();
+            //VistaPartidas vistaPartidas = new VistaPartidas(partidasPrincipiante, partidasIntermedio);
+            
+            //vistaPartidas.setVisible(true);
+        
+            //System.err.println("ERROR: No ha sido posible recuperar el backup del fichero '" + nombreFichero + "'. Fin de fichero inesperado");
+            VistaPartidas vistaPartidas = new VistaPartidas(partidasPrincipiante, partidasIntermedio, partidasExperto);
+            vistaPartidas.setVisible(true);
+        
+            
+        
+        
+    }//GEN-LAST:event_verMejoresTiemposButtonActionPerformed
 /**/
     /**
      * @param args the command line arguments
@@ -136,5 +298,6 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cargarPartidaButton;
     private javax.swing.JButton nuevaPartidaButton;
+    private javax.swing.JButton verMejoresTiemposButton;
     // End of variables declaration//GEN-END:variables
 }

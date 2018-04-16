@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
  
@@ -49,6 +50,10 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     double starttime;
     double endtime;
     double actualtime = System.nanoTime();
+    ArrayList<Usuario> partidasAux = new ArrayList<Usuario>();
+    ArrayList<Usuario> partidasPrincipiante;
+    ArrayList<Usuario> partidasIntermedio;
+    ArrayList<Usuario> partidasExperto;
     
     public BuscaminasGit(){
         
@@ -58,6 +63,9 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         this.m = m;
         this.nomines = nomines;
         nominesAux = nomines;
+        partidasPrincipiante = new ArrayList<Usuario>();
+        partidasIntermedio = new ArrayList<Usuario>();
+        partidasExperto = new ArrayList<Usuario>();
         //new BuscaminasGit();
         numeroMinas= new JLabel("Minas Restantes: ");
         tiempoTranscurrido =new JLabel("Tiempo de juego: ");
@@ -216,6 +224,9 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         this.m = m;
         this.nomines = nomines;
         nominesAux = nomines;
+        partidasPrincipiante = new ArrayList<Usuario>();
+        partidasIntermedio = new ArrayList<Usuario>();
+        partidasExperto = new ArrayList<Usuario>();
         //new BuscaminasGit();
         numeroMinas= new JLabel("Minas Restantes: ");
         tiempoTranscurrido =new JLabel("Tiempo de juego: ");
@@ -427,7 +438,16 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             endtime = System.nanoTime();
             Component temporaryLostComponent = null;
             cronometro.pararCronometro();
-            JOptionPane.showMessageDialog(temporaryLostComponent, "Congratulations you won!!! It took you "+(int)((endtime-starttime)/1000000000)+" seconds!");
+            //JOptionPane.showMessageDialog(temporaryLostComponent, "Congratulations you won!!! It took you "+(int)((endtime-starttime)/1000000000)+" seconds!");
+            /*if(nominesAux == 10){
+                partidasAux = partidasPrincipiante;
+            } else if (nominesAux == 40){
+                partidasAux = partidasIntermedio;
+            } else {
+                partidasAux = partidasExperto;
+            }*/
+            VentanaGanador ventanaGanador = new VentanaGanador((int)((endtime-starttime)/1000000000), n, m);
+            ventanaGanador.setVisible(true);
             this.setVisible(false);
         }
     }
