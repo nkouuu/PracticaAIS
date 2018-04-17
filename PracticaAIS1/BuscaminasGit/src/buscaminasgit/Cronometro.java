@@ -50,7 +50,8 @@ public class Cronometro  implements Runnable
     }
   
     public void run(){
-        Integer minutos = 0 , segundos = 0, milesimas = 0;
+        String[] s=tiempo.getText().split(":");
+        Integer minutos = Integer.valueOf(s[0] ), segundos = Integer.valueOf(s[1] ), milesimas = Integer.valueOf(s[2] );
         //min es minutos, seg es segundos y mil es milesimas de segundo
         String min="", seg="", mil="";
         try

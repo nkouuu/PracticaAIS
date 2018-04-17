@@ -19,6 +19,15 @@ public class Datos implements Serializable{
     int guesses[][];
     int perm[][];
     Botones botones [][];
+    String tiempo;
+
+    public String getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(String tiempo) {
+        this.tiempo = tiempo;
+    }
     
     public Datos(int n,int m){
         this.n=n;
