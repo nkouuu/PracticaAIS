@@ -448,9 +448,14 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             } else {
                 partidasAux = partidasExperto;
             }*/
-            VentanaGanador ventanaGanador = new VentanaGanador((int)((endtime-starttime)/1000000000), n, m);
-            ventanaGanador.setVisible(true);
-            this.setVisible(false);
+            if((n == 10 && m==10) || (n == 16 && m == 16) || (n == 32 && m == 16)){
+                VentanaGanador ventanaGanador = new VentanaGanador((int)((endtime-starttime)/1000000000), n, m);
+                ventanaGanador.setVisible(true);
+                this.setVisible(false);
+            } else{
+                JOptionPane.showMessageDialog(temporaryLostComponent, "Congratulations you won!!! It took you "+(int)((endtime-starttime)/1000000000)+" seconds!");
+            }
+            
         }
     }
     
