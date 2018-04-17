@@ -142,8 +142,13 @@ public class VistaNivelPersonalizado extends javax.swing.JDialog {
         int n = (int) this.numeroFilasSpinner.getValue();
         int m = (int) this.numeroColumnasSpinner.getValue();
         int nomines = (int) this.numeroMinasSpinner.getValue();
-        buscaminas = new BuscaminasGit(n,m,nomines);
-        this.setVisible(false);
+        if(nomines >= n * m){
+            JOptionPane.showMessageDialog(this, "El número de minas incorrecto. Valor máximo: " + n*m, "Error", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            buscaminas = new BuscaminasGit(n,m,nomines);
+            this.setVisible(false);
+        }
+        
        
     }//GEN-LAST:event_aceptarButtonActionPerformed
 
