@@ -26,7 +26,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     
     JMenuBar barraMenu;
     JMenu menu;
-    JMenuItem mi1,mi2,mi3;
+    JMenuItem mi1,mi2,mi3, mi4;
     JTextField minasRestantes;
     JLabel tiempoTranscurrido ;
     JLabel numeroMinas;
@@ -81,20 +81,18 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         setJMenuBar(barraMenu);
         menu.setBackground(Color.black);
         barraMenu.add(menu);
-        mi1 = new JMenuItem("Reiniciar partida");
-        //mi1.addActionListener(this);
-        mi1.addActionListener((ActionEvent evento) -> {
+        mi4 = new JMenuItem("Nueva partida");
+       
+        mi4.addActionListener((ActionEvent evento) -> {
             this.setVisible(false);
-            new BuscaminasGit(n,m,nominesAux);
+            VistaNiveles vistaNiveles= new VistaNiveles();
+            vistaNiveles.setVisible(true);
             
         });
-        menu.add(mi1);
-        mi1.addActionListener((ActionEvent evento) -> {
-            this.setVisible(false);
-            new BuscaminasGit(n,m,nominesAux);
-            
-        });
-        mi2 = new JMenuItem("Guardar partida");
+        
+        menu.add(mi4);
+        
+         mi2 = new JMenuItem("Guardar partida");
 
         
         mi2.addActionListener((ActionEvent evento) -> {
@@ -116,7 +114,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             }
         }  
         });
-        menu.add(mi2);
+        
         mi3 = new JMenuItem("Cargar partida");
         //mi3.addActionListener(this);
         mi3.addActionListener((ActionEvent evento) -> {
@@ -137,7 +135,25 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         }
             
         );
+        menu.add(mi2);
         menu.add(mi3);
+        mi1 = new JMenuItem("Reiniciar partida");
+        //mi1.addActionListener(this);
+        mi1.addActionListener((ActionEvent evento) -> {
+            this.setVisible(false);
+            new BuscaminasGit(n,m,nominesAux);
+            
+        });
+        menu.add(mi1);
+        mi1.addActionListener((ActionEvent evento) -> {
+            this.setVisible(false);
+            new BuscaminasGit(n,m,nominesAux);
+            
+        });
+       
+        
+        
+        
         menu.setMinimumSize(new Dimension(50,0));
         barraMenu.setLayout(new BoxLayout(barraMenu, BoxLayout.X_AXIS));
         cronometro.iniciarCronometro();
@@ -244,20 +260,18 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         setJMenuBar(barraMenu);
         menu.setBackground(Color.black);
         barraMenu.add(menu);
-        mi1 = new JMenuItem("Reiniciar partida");
-        //mi1.addActionListener(this);
-        mi1.addActionListener((ActionEvent evento) -> {
+        mi4 = new JMenuItem("Nueva partida");
+       
+        mi4.addActionListener((ActionEvent evento) -> {
             this.setVisible(false);
-            new BuscaminasGit(n,m,nominesAux);
+            VistaNiveles vistaNiveles= new VistaNiveles();
+            vistaNiveles.setVisible(true);
             
         });
-        menu.add(mi1);
-        mi1.addActionListener((ActionEvent evento) -> {
-            this.setVisible(false);
-            new BuscaminasGit(n,m,nominesAux);
-            
-        });
-        mi2 = new JMenuItem("Guardar partida");
+        
+        menu.add(mi4);
+        
+         mi2 = new JMenuItem("Guardar partida");
 
         
         mi2.addActionListener((ActionEvent evento) -> {
@@ -279,7 +293,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             }
         }  
         });
-        menu.add(mi2);
+        
         mi3 = new JMenuItem("Cargar partida");
         //mi3.addActionListener(this);
         mi3.addActionListener((ActionEvent evento) -> {
@@ -300,7 +314,23 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         }
             
         );
+        menu.add(mi2);
         menu.add(mi3);
+        
+        mi1 = new JMenuItem("Reiniciar partida");
+        //mi1.addActionListener(this);
+        mi1.addActionListener((ActionEvent evento) -> {
+            this.setVisible(false);
+            new BuscaminasGit(n,m,nominesAux);
+            
+        });
+        menu.add(mi1);
+        mi1.addActionListener((ActionEvent evento) -> {
+            this.setVisible(false);
+            new BuscaminasGit(n,m,nominesAux);
+            
+        });
+        
         menu.setMinimumSize(new Dimension(50,0));
         barraMenu.setLayout(new BoxLayout(barraMenu, BoxLayout.X_AXIS));
         cronometro.iniciarCronometro();
