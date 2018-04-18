@@ -31,7 +31,11 @@ public class VistaNiveles extends javax.swing.JFrame {
         
         this.setSize(ANCHO, ALTO);
         this.setLocationRelativeTo(null);
+
         this.setDefaultCloseOperation(HIDE_ON_CLOSE );
+
+        //this.setDefaultCloseOperation();
+
     }
 
     /**
