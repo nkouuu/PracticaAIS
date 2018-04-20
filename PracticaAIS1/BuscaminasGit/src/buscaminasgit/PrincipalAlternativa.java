@@ -33,8 +33,6 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     
      private static String separadorGlobal = System.getProperty("file.separator");
      private static String directorioGlobal = System.getProperty("user.home");
-     
-     
     
     static BuscaminasGit buscaminas = new BuscaminasGit();
     static ArrayList<Usuario> partidasPrincipiante = new ArrayList<Usuario>();
@@ -200,6 +198,7 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
         nuevaPartidaButton = new javax.swing.JButton();
         cargarPartidaButton = new javax.swing.JButton();
         verMejoresTiemposButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
@@ -228,6 +227,9 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(verMejoresTiemposButton);
+
+        jButton1.setText("Ayuda");
+        getContentPane().add(jButton1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -340,6 +342,7 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cargarPartidaButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton nuevaPartidaButton;
     private javax.swing.JButton verMejoresTiemposButton;
     // End of variables declaration//GEN-END:variables
