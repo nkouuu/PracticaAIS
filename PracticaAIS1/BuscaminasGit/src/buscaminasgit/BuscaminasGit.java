@@ -23,13 +23,19 @@ import javax.swing.JFileChooser;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class BuscaminasGit extends JFrame implements ActionListener, MouseListener, Serializable{
-    
+    /* Problema 1 : Lo solucionamos creando una barra de menú a mano, de tal forma que cuando querías añadir un nuevo item a esta barra
+    tenías que usar la opción .add(nombre_del_item);   */
     JMenuBar barraMenu;
     JMenu menu;
     JMenuItem mi1,mi2,mi3, mi4;
     JTextField minasRestantes;
     JLabel tiempoTranscurrido ;
     JLabel numeroMinas;
+     /* Problema 2 : En este problema, el problema lo tuvimos a la hora de ajustar un cronómetro. Lo complicado no fue insertarlo dentro 
+    de la barra del menú, si no ponerlo en marcha y guardar con detenimiento los segundos y/o minutos que tardaba el usuario en finalizar o guardar una partida.   
+    
+    Para ello, nos creamos una clase individual dentro del proyecto llamada Cronometro, en la que guardamos el tiempo y arrancamos el cronometro lanzando un thread.
+    El thread lo podemos controlar de tal forma que lo podíamos pararlo cuando el usuario guarde o cargue una partida.  */
     Cronometro cronometro;
     int nomines = 80;//number of mines
     int nominesAux;

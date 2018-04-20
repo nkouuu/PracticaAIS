@@ -16,6 +16,13 @@ import javax.swing.JLabel;
  *
  * @author nicolaealexe
  */
+
+ /* Problema 2 : En este problema, el problema lo tuvimos a la hora de ajustar un cronómetro. Lo complicado no fue insertarlo dentro 
+    de la barra del menú, si no ponerlo en marcha y guardar con detenimiento los segundos y/o minutos que tardaba el usuario en finalizar o guardar una partida.   
+    
+    Para ello, nos creamos una clase individual dentro del proyecto llamada Cronometro, en la que guardamos el tiempo y arrancamos el cronometro lanzando un thread.
+    El thread lo podemos controlar de tal forma que lo podíamos pararlo cuando el usuario guarde o cargue una partida.  */
+
 public class Cronometro  implements Runnable 
 { 
     JLabel tiempo;
@@ -50,6 +57,14 @@ public class Cronometro  implements Runnable
     }
   
     public void run(){
+        
+        
+         /* Problema 2 : En este problema, el problema lo tuvimos a la hora de ajustar un cronómetro. Lo complicado no fue insertarlo dentro 
+    de la barra del menú, si no ponerlo en marcha y guardar con detenimiento los segundos y/o minutos que tardaba el usuario en finalizar o guardar una partida.   
+    
+    Para ello, nos creamos una clase individual dentro del proyecto llamada Cronometro, en la que guardamos el tiempo y arrancamos el cronometro lanzando un thread.
+    El thread lo podemos controlar de tal forma que lo podíamos pararlo cuando el usuario guarde o cargue una partida.  */
+        
         String[] s=tiempo.getText().split(":");
         Integer minutos = Integer.valueOf(s[0] ), segundos = Integer.valueOf(s[1] ), milesimas = Integer.valueOf(s[2] );
         //min es minutos, seg es segundos y mil es milesimas de segundo

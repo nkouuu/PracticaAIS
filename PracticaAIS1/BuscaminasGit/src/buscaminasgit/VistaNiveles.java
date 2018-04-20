@@ -92,6 +92,9 @@ public class VistaNiveles extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nivelPrincipianteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivelPrincipianteButtonActionPerformed
+            
+        /* Creamos 3 variables para detectar qué partida ha comenzado el usuario , si es Principiante, Avanzado o Experto.*/
+        
             int n = 10;
             int m = 10;
             int nomines = 10;
@@ -102,6 +105,9 @@ public class VistaNiveles extends javax.swing.JFrame {
     }//GEN-LAST:event_nivelPrincipianteButtonActionPerformed
 
     private void nivelntermedioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivelntermedioButtonActionPerformed
+            
+        /* Creamos 3 variables para detectar qué partida ha comenzado el usuario , si es Principiante, Avanzado o Experto.*/
+        
             int n = 16;
             int m = 16;
             int nomines = 40;
@@ -110,6 +116,9 @@ public class VistaNiveles extends javax.swing.JFrame {
     }//GEN-LAST:event_nivelntermedioButtonActionPerformed
 
     private void nivelExpertoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivelExpertoButtonActionPerformed
+            
+        /* Creamos 3 variables para detectar qué partida ha comenzado el usuario , si es Principiante, Avanzado o Experto.*/
+        
             int n = 32;
             int m = 16;
             int nomines = 99;

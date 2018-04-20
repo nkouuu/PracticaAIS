@@ -11,6 +11,12 @@ import java.io.Serializable;
  *
  * @author Diegomendez1997
  */
+
+
+/* La clase Datos, es pararela a la clase Botones. Esta se creó para poder guardar una partida. De esta forma, detectamos los datos almacenados por el usuario.
+        A la hora de cargar una partida, es mucho mas sencillo leer de esta clase.
+*/
+
 public class Datos implements Serializable{
     private int n;
     private int m;

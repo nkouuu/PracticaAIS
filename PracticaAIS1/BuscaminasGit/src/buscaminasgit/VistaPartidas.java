@@ -17,6 +17,8 @@ import java.util.ArrayList;
  */
 public class VistaPartidas extends javax.swing.JFrame {
     
+    
+    /*Utilizamos en la vista de diseño, 3 Listados, por lo que realizamos la declaración de 3 Modelos para los Listados */
     private DefaultListModel<Usuario> modeloUsuarios;
     private DefaultListModel<Usuario> modeloUsuariosIntermedio;
     private DefaultListModel<Usuario> modeloUsuariosExperto;
@@ -29,12 +31,17 @@ public class VistaPartidas extends javax.swing.JFrame {
      */
     public VistaPartidas(ArrayList<Usuario> partidasPrincipiante, ArrayList<Usuario> partidasIntermedio, ArrayList<Usuario> partidasExperto) {
         initComponents();
+        
+        /* Inicializamos los Modelos y con setModel vamos modificandolos*/
+        
         this.modeloUsuarios = new DefaultListModel<>();
         this.usuariosPrincipiantesList.setModel(this.modeloUsuarios);
         this.modeloUsuariosIntermedio = new DefaultListModel<>();
         this.usuariosIntermediosList.setModel(this.modeloUsuariosIntermedio);
         this.modeloUsuariosExperto = new DefaultListModel<>();
         this.usuariosExpertosList.setModel(modeloUsuariosExperto);
+        
+        /* Cargamos los listados con los 3 arrayLists que recibe el constructor VistaPartidas */
         
         for (Usuario usuario: partidasPrincipiante) {
             this.modeloUsuarios.addElement(usuario);
@@ -51,10 +58,6 @@ public class VistaPartidas extends javax.swing.JFrame {
         
         
         
-        /*
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(screenSize);
-        */
         
         
         this.setLocationRelativeTo(null);

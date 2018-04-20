@@ -31,32 +31,60 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     private static final int ANCHO = 350;
     private static final int ALTO = 350;
     
+    /* Problema 3: Guardar las 10 mejores partidas con rutas que valgan para cualquier Sistema Operativo.
+    
+    3-	Guardar las 10 mejores partidas de entre todas las jugadas no fue difícil. El problema lo teníamos a la hora de 
+    guardar dichas partidas en un fichero binario. Hemos tenido que comprobar con detenimiento la ruta de cada sistema
+    operativo, prestándole más atención al directorio de trabajo del usuario, y la barra “absoluta” para crear ahí los ficheros
+    una vez comienza el juego. O generarlos si estos ficheros no estuvieran ya creados.
+    
+    
+    */
+    
+    /* Usamos una variable que detecte el separador Global del sistema operativo actual junto con otra variable que sea el directorio de
+    trabajo del usuario.
+    */
      private static String separadorGlobal = System.getProperty("file.separator");
      private static String directorioGlobal = System.getProperty("user.home");
     
     static BuscaminasGit buscaminas = new BuscaminasGit();
+    
+    /*Declaración de arrayLists para almacenar los mejores tiempos de los usuarios.*/
+    
     static ArrayList<Usuario> partidasPrincipiante = new ArrayList<Usuario>();
     static ArrayList<Usuario> partidasIntermedio = new ArrayList<Usuario>();
     static ArrayList<Usuario> partidasExperto = new ArrayList<Usuario>();
     
-    String nombreFichero = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposPrincipiante";
-    String nombreFichero2 = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposIntermedio";
-    String nombreFichero3 = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposExperto";
+    /*
+    
+    Declaramos 3 variables para los 3 ficheros con sus rutas ya cogidas de cualquiera sistema operativo del que disponga el usuario.
+    Usaremos las variables mas abajo para poder hacer una copia de seguridad de los mejores tiempos.
+    
+    */
+    
+    String nombreFichero = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposPrincipiante"; /*Partida principiante */
+    String nombreFichero2 = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposIntermedio"; /*Partida intermedio*/
+    String nombreFichero3 = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposExperto"; /*Partida experto*/
     /**
      * Creates new form PrincipalAlternativa
      */
     public PrincipalAlternativa() {
         initComponents();
         
-        //this.buscaminas = new BuscaminasGit();
-        
         this.setSize(ANCHO, ALTO);
         this.setLocationRelativeTo(null);
+        
+        /*Hay que darse cuenta que si el usuario no tiene partidas ya hechas, ni tiempos que cargar en los ArrayList, el programa cuando se inicia
+        crea por defecto los 3 ficheros VACÍOS, para que no de errores cuando se quiera crearlos mas adelante.
+        */
+        
          File ficheroPrincipiante = new File(this.nombreFichero);
        
        File ficheroIntermedio= new File(this.nombreFichero2);
        
        File ficheroExperto = new File(this.nombreFichero3);
+       
+       /*Lo que se realiza en esta parte del código, son 3 comprobaciones, si no existe el fichero, lo creo nada mas empezar*/
        
        if(!ficheroPrincipiante.exists()){
           try {
@@ -87,12 +115,16 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
         
     
     }
+    
+    /* A continuación , usamos 3 métodos para restaurar una partida en los ArrayList de VistaPartidas.
+    
+        y utilizamos las varibles declaras al principio del código para no tener que volver a repetir rutas.
+    
+    */
     public boolean restaurarBackUpMejoresTiemposPrincipiante() {
         try {
             // Apertura
             
-                
-    
             FileInputStream fis = new FileInputStream(nombreFichero);
             BufferedInputStream bis = new BufferedInputStream(fis);
             ObjectInputStream ois = new ObjectInputStream(bis);
@@ -248,7 +280,13 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevaPartidaButtonActionPerformed
 
     private void cargarPartidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarPartidaButtonActionPerformed
-            JFileChooser selectorFichero = new JFileChooser();
+           
+        /*A la hora de cargar cualquier partida, dejamos la opción al usuario de que pueda seleccionar, dentro de su ordenador,
+        que partida desea cargar, para ello habilitamos un selector de ficheros, el cual lee el archivo que se selecciona, y nos encargamos de 
+        restaurar la partida llamando al método restaurarBackUp.
+        */
+        
+        JFileChooser selectorFichero = new JFileChooser();
             selectorFichero.setDialogTitle("Selecciona Fichero BackUp");
             selectorFichero.setFileSelectionMode(JFileChooser.FILES_ONLY);
         
@@ -271,34 +309,14 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     private void verMejoresTiemposButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verMejoresTiemposButtonActionPerformed
         
             
-            // Apertura
+            /*A la hora de ver los mejores tiempos, simplemente estamos llamando a la ventana VistaPartidas, donde le vamos a pasar los Arraylist declarados arriba
+            VistaPartidas se encargará de recoger los 3 arrayLists y utilizarlos para rellenar los JList convenientes.
+        */
+            
             this.restaurarBackUpMejoresTiemposPrincipiante();
             this.restaurarBackUpMejoresTiemposIntermedio();
             this.restaurarBackUpMejoresTiemposExperto();
-            /*FileInputStream fis2 = new FileInputStream(nombreFichero2);
-            BufferedInputStream bis2 = new BufferedInputStream(fis2);
-            ObjectInputStream ois2 = new ObjectInputStream(bis2);*/
             
-            // Lectura
-            
-            /*for(int i = 0; i<10; i++){
-                Usuario usuario = (Usuario) ois2.readObject();
-                if(usuario == null){
-                    i = 10;
-                } else {
-                    partidasIntermedio.add(usuario);
-                }
-            }*/
-            
-            
-            // Cierre
-            
-            //ois2.close();
-            //VistaPartidas vistaPartidas = new VistaPartidas(partidasPrincipiante, partidasIntermedio);
-            
-            //vistaPartidas.setVisible(true);
-        
-            //System.err.println("ERROR: No ha sido posible recuperar el backup del fichero '" + nombreFichero + "'. Fin de fichero inesperado");
             VistaPartidas vistaPartidas = new VistaPartidas(partidasPrincipiante, partidasIntermedio, partidasExperto);
             vistaPartidas.setVisible(true);
         

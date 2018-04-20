@@ -11,6 +11,14 @@ import java.io.Serializable;
  *
  * @author Diegomendez1997
  */
+
+
+/* 
+
+    La clase Usuario no es más que una clase simple donde almacenamos el Nombre y el Tiempo que ha tardado un usuario en GANAR una partida.
+    Nos es muy util para crear Objetos de tipo Usuario y poder manejarlos a la hora de guardarlo en los ficheros.
+
+*/
 public class Usuario implements Serializable{
     private String nombre;
     private int tiempo;

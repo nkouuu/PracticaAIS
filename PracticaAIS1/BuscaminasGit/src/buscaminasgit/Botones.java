@@ -12,6 +12,12 @@ import java.io.Serializable;
  *
  * @author Diegomendez1997
  */
+
+
+/* La clase botones se creó para poder guardar una partida. De esta forma, detectamos que botones ha pulsado el usuario, cuales están en modo "mina" (amarillo).
+        A la hora de cargar una partida, es mucho mas sencillo leer de esta clase.
+*/
+
 public class Botones implements Serializable{
     String text;
     boolean estado;

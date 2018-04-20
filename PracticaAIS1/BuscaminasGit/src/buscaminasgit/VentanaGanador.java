@@ -26,6 +26,13 @@ public class VentanaGanador extends javax.swing.JFrame {
     private ArrayList<Usuario> partidas;
     private int n, m;
     static String nombreFichero;
+    
+     
+    
+    /* Usamos una variable que detecte el separador Global del sistema operativo actual junto con otra variable que sea el directorio de
+    trabajo del usuario.
+    */
+    
     String separadorGlobal = System.getProperty("file.separator");
        String directorioGlobal = System.getProperty("user.home");
     /**
@@ -41,6 +48,9 @@ public class VentanaGanador extends javax.swing.JFrame {
         this.partidas = new ArrayList<Usuario>();
         
     }
+    
+    /*Cuando el usuario selecciona en guardar, hay que hacer una copia que guarde su nombre de usuario, y si tiempo, para almacenar todo en un fichero */
+    
     public boolean hacerBackUpMejoresTiempos() {
         try{
              if ((this.n == 10) && (this.m == 10)){
@@ -196,9 +206,23 @@ public class VentanaGanador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
+      
+        /*En este metodo, detectamos primero que el usuario seleccione el botón GUARDAR.
+        a continuación, creamos un un Objeto de tipo Usuario, que guardará el nombre que haya introducido junto con su tiempo de juego finalizado.
+        */
+        
         Usuario usuario = new Usuario(nombreField.getText(), tiempo);
         //System.out.println(usuario);
         this.restaurarBackUpMejoresTiempos();
+        
+        /*Lo que seguidamente hacermos, el detectar que el tiempo con el que ha ganado el usuario sea uno de los 10 mejores.
+        
+        Si el fichero se encuentra vacio (no hay ninguna partida todavía registrada), insertará ese tiempo.
+        Si el array ya contiene 10 tiempos, comenzamos a preguntarnos si ese tiempo es mejor que los que ya tenemos registrados. 
+        En el caso de que si lo sea, hacemos una búsqueda rápida de todo el fichero, eliminamos el PEOR tiempo e insertamos este nuevo.
+        
+        */
+        
         if (partidas.size() < 10){
                 partidas.add(usuario);
         } else {
@@ -214,6 +238,8 @@ public class VentanaGanador extends javax.swing.JFrame {
                 partidas.remove(posicion);
                 partidas.add(usuario);
             } else {
+                
+                /*En el caso de que el tiempo no sea mejor de los que ya hay, se le muestra un mensaje por pantalla al usuario*/
                 JOptionPane.showMessageDialog(this, "Tu tiempo no es de los diez mejores", "Guardar Partida", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
             }
