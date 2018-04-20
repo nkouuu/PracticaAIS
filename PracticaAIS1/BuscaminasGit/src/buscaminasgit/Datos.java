@@ -12,6 +12,13 @@ import java.io.Serializable;
  * @author Diegomendez1997
  */
 
+/*Problema 5
+
+5-	Al guardar una partida, pensamos que sería mucho más fácil generar un documento binario donde guarde todo el código (el JFrame) 
+y lo volviese a cargar, una vez seleccione el usuario su propia partida dentro de su ordenador. No fue tarea fácil, ya que dimos por hecho cosas que 
+no sabíamos como resolverlas. Decidimos entonces, crear un constructor propio que guarde el estado del tablero, y de esa forma, fuese mucho más fácil “reconstruirlo”.
+
+*/
 
 /* La clase Datos, es pararela a la clase Botones. Esta se creó para poder guardar una partida. De esta forma, detectamos los datos almacenados por el usuario.
         A la hora de cargar una partida, es mucho mas sencillo leer de esta clase.
