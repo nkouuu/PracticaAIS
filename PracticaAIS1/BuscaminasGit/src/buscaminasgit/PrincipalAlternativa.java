@@ -10,9 +10,12 @@ package buscaminasgit;
 import java.awt.Frame;
 import java.io.BufferedInputStream;
 import java.io.EOFException;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.JFileChooser;
@@ -28,13 +31,19 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     private static final int ANCHO = 350;
     private static final int ALTO = 350;
     
+     private static String separadorGlobal = System.getProperty("file.separator");
+     private static String directorioGlobal = System.getProperty("user.home");
+     
+     
+    
     static BuscaminasGit buscaminas = new BuscaminasGit();
     static ArrayList<Usuario> partidasPrincipiante = new ArrayList<Usuario>();
     static ArrayList<Usuario> partidasIntermedio = new ArrayList<Usuario>();
     static ArrayList<Usuario> partidasExperto = new ArrayList<Usuario>();
-    static String nombreFichero = "./mejoresTiemposPrincipiante";
-    static String nombreFichero2 = "./mejoresTiemposIntermedio";
-    static String nombreFichero3 = "./mejoresTiemposExperto";
+    
+    String nombreFichero = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposPrincipiante";
+    String nombreFichero2 = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposIntermedio";
+    String nombreFichero3 = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposExperto";
     /**
      * Creates new form PrincipalAlternativa
      */
@@ -45,6 +54,40 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
         
         this.setSize(ANCHO, ALTO);
         this.setLocationRelativeTo(null);
+         File ficheroPrincipiante = new File(this.nombreFichero);
+       
+       File ficheroIntermedio= new File(this.nombreFichero2);
+       
+       File ficheroExperto = new File(this.nombreFichero3);
+       
+       if(!ficheroPrincipiante.exists()){
+          try {
+            ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(this.directorioGlobal+this.separadorGlobal+"mejoresTiemposPrincipiante"));
+            file.close();
+        } catch (IOException ex) {
+            System.out.println(ex);
+         }
+        }
+       
+       if(!ficheroIntermedio.exists()){
+            try {
+            ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(this.directorioGlobal+this.separadorGlobal+"mejoresTiemposIntermedio"));
+            file.close();
+        } catch (IOException ex) {
+            System.out.println(ex);
+         }
+        }
+       
+       if(!ficheroExperto.exists()){
+            try {
+            ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(this.directorioGlobal+this.separadorGlobal+"mejoresTiemposExperto"));
+            file.close();
+        } catch (IOException ex) {
+            System.out.println(ex);
+         }
+        }
+        
+    
     }
     public boolean restaurarBackUpMejoresTiemposPrincipiante() {
         try {

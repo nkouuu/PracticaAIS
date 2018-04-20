@@ -26,6 +26,8 @@ public class VentanaGanador extends javax.swing.JFrame {
     private ArrayList<Usuario> partidas;
     private int n, m;
     static String nombreFichero;
+    String separadorGlobal = System.getProperty("file.separator");
+       String directorioGlobal = System.getProperty("user.home");
     /**
      * Creates new form VentanaGanador
      */
@@ -41,12 +43,12 @@ public class VentanaGanador extends javax.swing.JFrame {
     }
     public boolean hacerBackUpMejoresTiempos() {
         try{
-            if ((this.n == 10) && (this.m == 10)){
-                nombreFichero = "./mejoresTiemposPrincipiante";
+             if ((this.n == 10) && (this.m == 10)){
+                nombreFichero = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposPrincipiante";
             } else if((this.n == 16) && (this.m == 16)){
-                nombreFichero = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposIntermedio";
+                nombreFichero = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposIntermedio";
             } else if((this.n == 32) && (this.m == 16)){
-               nombreFichero = "/Users/Diegomendez1997/Documents/GitHub/PracticaAIS1/PracticaAIS1/BuscaminasGit/mejoresTiemposExperto";
+               nombreFichero = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposExperto";
             }
         FileOutputStream fos = new FileOutputStream(nombreFichero);
         BufferedOutputStream bos = new BufferedOutputStream(fos);
@@ -69,14 +71,12 @@ public class VentanaGanador extends javax.swing.JFrame {
             
             //String rutaGlobal = System.getProperty("file.separator");
             
-            if ((this.n == 10) && (this.m == 10)){
-                nombreFichero = "./mejoresTiemposPrincipiante";
-                
-                
+             if ((this.n == 10) && (this.m == 10)){
+                nombreFichero = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposPrincipiante";
             } else if((this.n == 16) && (this.m == 16)){
-                nombreFichero = "./mejoresTiemposIntermedio";
+                nombreFichero = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposIntermedio";
             } else if((this.n == 32) && (this.m == 16)){
-               nombreFichero = "./mejoresTiemposExperto";
+               nombreFichero = this.directorioGlobal+this.separadorGlobal+"mejoresTiemposExperto";
             }
             
             FileInputStream fis = new FileInputStream(nombreFichero);
