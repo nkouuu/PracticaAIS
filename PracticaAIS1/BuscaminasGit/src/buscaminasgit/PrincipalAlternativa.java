@@ -229,6 +229,11 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
         getContentPane().add(verMejoresTiemposButton);
 
         jButton1.setText("Ayuda");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
 
         pack();
@@ -301,6 +306,11 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_verMejoresTiemposButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       VistaAyuda vistaAyuda = new VistaAyuda();
+       vistaAyuda.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 /**/
     /**
      * @param args the command line arguments
