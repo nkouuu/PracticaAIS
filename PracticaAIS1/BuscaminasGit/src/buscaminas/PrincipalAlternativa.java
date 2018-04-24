@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package buscaminasgit;
+package buscaminas;
 
 //import Modelo.Empresa;
 
@@ -47,7 +47,7 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
      private static String separadorGlobal = System.getProperty("file.separator");
      private static String directorioGlobal = System.getProperty("user.home");
     
-    static BuscaminasGit buscaminas = new BuscaminasGit();
+    static Buscaminas buscaminas = new Buscaminas();
     
     /*Declaración de arrayLists para almacenar los mejores tiempos de los usuarios.*/
     
@@ -272,7 +272,7 @@ public class PrincipalAlternativa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevaPartidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaPartidaButtonActionPerformed
-          //buscaminas = new BuscaminasGit();
+          //buscaminas = new Buscaminas();
           VistaNiveles vistaNiveles = new VistaNiveles();
           vistaNiveles.setVisible(true);
           //buscaminas.setVisible(true);

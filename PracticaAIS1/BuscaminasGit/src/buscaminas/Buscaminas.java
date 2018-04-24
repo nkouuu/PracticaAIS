@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package buscaminasgit;
+package buscaminas;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -22,7 +22,7 @@ import javax.swing.JFileChooser;
  
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
-public class BuscaminasGit extends JFrame implements ActionListener, MouseListener, Serializable{
+public class Buscaminas extends JFrame implements ActionListener, MouseListener, Serializable{
     /* Problema 1 : Lo solucionamos creando una barra de menú a mano, de tal forma que cuando querías añadir un nuevo item a esta barra
     tenías que usar la opción .add(nombre_del_item);   */
     JMenuBar barraMenu;
@@ -41,7 +41,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     int nominesAux;
     int perm[][];
     String tmp;
-    BuscaminasGit buscaminas;
+    Buscaminas buscaminas;
     boolean found = false;
     int row;
     int column;
@@ -61,10 +61,10 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     ArrayList<Usuario> partidasIntermedio;
     ArrayList<Usuario> partidasExperto;
     
-    public BuscaminasGit(){
+    public Buscaminas(){
         
     }
-    public BuscaminasGit(int n, int m, int nomines){
+    public Buscaminas(int n, int m, int nomines){
         this.n = n;
         this.m = m;
         this.nomines = nomines;
@@ -72,7 +72,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         partidasPrincipiante = new ArrayList<Usuario>();
         partidasIntermedio = new ArrayList<Usuario>();
         partidasExperto = new ArrayList<Usuario>();
-        //new BuscaminasGit();
+        //new Buscaminas();
         numeroMinas= new JLabel("Minas Restantes: ");
         tiempoTranscurrido =new JLabel("Tiempo de juego: ");
         menu = new JMenu("Menu");
@@ -147,13 +147,13 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         //mi1.addActionListener(this);
         mi1.addActionListener((ActionEvent evento) -> {
             this.setVisible(false);
-            new BuscaminasGit(n,m,nominesAux);
+            new Buscaminas(n,m,nominesAux);
             
         });
         menu.add(mi1);
         mi1.addActionListener((ActionEvent evento) -> {
             this.setVisible(false);
-            new BuscaminasGit(n,m,nominesAux);
+            new Buscaminas(n,m,nominesAux);
             
         });
        
@@ -241,7 +241,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         prueba.addActionListener(this);*/
     }//end constructor Mine()
     
-    public BuscaminasGit(int n, int m, int nomines, int [][] mines, int guesses[][], int perm[][], Botones[][] b1,String tiempo){
+    public Buscaminas(int n, int m, int nomines, int [][] mines, int guesses[][], int perm[][], Botones[][] b1,String tiempo){
         this.n = n;
         this.m = m;
         this.nomines = nomines;
@@ -249,7 +249,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         partidasPrincipiante = new ArrayList<Usuario>();
         partidasIntermedio = new ArrayList<Usuario>();
         partidasExperto = new ArrayList<Usuario>();
-        //new BuscaminasGit();
+        //new Buscaminas();
         numeroMinas= new JLabel("Minas Restantes: ");
         tiempoTranscurrido =new JLabel("Tiempo de juego: ");
         menu = new JMenu("Menu");
@@ -327,13 +327,13 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
         //mi1.addActionListener(this);
         mi1.addActionListener((ActionEvent evento) -> {
             this.setVisible(false);
-            new BuscaminasGit(n,m,nominesAux);
+            new Buscaminas(n,m,nominesAux);
             
         });
         menu.add(mi1);
         mi1.addActionListener((ActionEvent evento) -> {
             this.setVisible(false);
-            new BuscaminasGit(n,m,nominesAux);
+            new Buscaminas(n,m,nominesAux);
             
         });
         
@@ -529,7 +529,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
     }
     /*
     public static void main(String[] args){
-        new BuscaminasGit();
+        new Buscaminas();
     }*/
     
     public void mouseClicked(MouseEvent e) {
@@ -628,7 +628,7 @@ public class BuscaminasGit extends JFrame implements ActionListener, MouseListen
             
             // Lectura
             Datos datos = (Datos) ois.readObject();
-            BuscaminasGit buscaminas = new BuscaminasGit(datos.getN(), datos.getM(), datos.getNomines(), datos.getMines(), datos.getGuesses(),datos.getPerm(),datos.getBotones(),datos.getTiempo());
+            Buscaminas buscaminas = new Buscaminas(datos.getN(), datos.getM(), datos.getNomines(), datos.getMines(), datos.getGuesses(),datos.getPerm(),datos.getBotones(),datos.getTiempo());
             this.setVisible(false);
             // Cierre
             ois.close();

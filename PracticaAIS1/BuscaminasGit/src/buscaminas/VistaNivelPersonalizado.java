@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package buscaminasgit;
+package buscaminas;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author Diegomendez1997
  */
 public class VistaNivelPersonalizado extends javax.swing.JDialog {
-    private static BuscaminasGit buscaminas;
+    private static Buscaminas buscaminas;
     
     /**
      * Creates new form AltaTrabajador
@@ -145,7 +145,7 @@ public class VistaNivelPersonalizado extends javax.swing.JDialog {
         if(nomines >= n * m){
             JOptionPane.showMessageDialog(this, "El número de minas incorrecto. Valor máximo: " + n*m, "Error", JOptionPane.INFORMATION_MESSAGE);
         }else{
-            buscaminas = new BuscaminasGit(n,m,nomines);
+            buscaminas = new Buscaminas(n,m,nomines);
             this.setVisible(false);
         }
         

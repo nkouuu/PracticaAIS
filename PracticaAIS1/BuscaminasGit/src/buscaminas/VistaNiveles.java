@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package buscaminasgit;
+package buscaminas;
 
 //import Modelo.Empresa;
 
@@ -19,7 +19,7 @@ public class VistaNiveles extends javax.swing.JFrame {
     private static final int ANCHO = 350;
     private static final int ALTO = 350;
     
-    private static BuscaminasGit buscaminas;
+    private static Buscaminas buscaminas;
     
     /**
      * Creates new form PrincipalAlternativa
@@ -27,7 +27,7 @@ public class VistaNiveles extends javax.swing.JFrame {
     public VistaNiveles() {
         initComponents();
         
-        //this.buscaminas = new BuscaminasGit();
+        //this.buscaminas = new Buscaminas();
         
         this.setSize(ANCHO, ALTO);
         this.setLocationRelativeTo(null);
@@ -98,7 +98,7 @@ public class VistaNiveles extends javax.swing.JFrame {
             int n = 10;
             int m = 10;
             int nomines = 10;
-            buscaminas = new BuscaminasGit(n,m,nomines);
+            buscaminas = new Buscaminas(n,m,nomines);
             this.setVisible(false);
           //buscaminas.setVisible(true);
             
@@ -111,7 +111,7 @@ public class VistaNiveles extends javax.swing.JFrame {
             int n = 16;
             int m = 16;
             int nomines = 40;
-            buscaminas = new BuscaminasGit(n,m,nomines);
+            buscaminas = new Buscaminas(n,m,nomines);
             this.setVisible(false);
     }//GEN-LAST:event_nivelntermedioButtonActionPerformed
 
@@ -122,7 +122,7 @@ public class VistaNiveles extends javax.swing.JFrame {
             int n = 32;
             int m = 16;
             int nomines = 99;
-            buscaminas = new BuscaminasGit(n,m,nomines);
+            buscaminas = new Buscaminas(n,m,nomines);
             this.setVisible(false);
     }//GEN-LAST:event_nivelExpertoButtonActionPerformed
 
